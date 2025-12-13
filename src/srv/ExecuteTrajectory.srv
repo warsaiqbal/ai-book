@@ -1,0 +1,11 @@
+# Request
+string robot_name          # Name of the robot to execute trajectory for
+# JointTrajectory trajectory # Joint trajectory to execute (using placeholder since message type may not be defined yet)
+string trajectory_data     # Trajectory data as string (placeholder)
+bool blocking              # Whether to block until completion
+---
+# Response
+bool success               # True if trajectory execution started
+string message             # Status message
+builtin_interfaces/Time execution_start_time  # Time when execution started
+builtin_interfaces/Time estimated_completion_time  # Estimated time of completion

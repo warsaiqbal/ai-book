@@ -1,0 +1,31 @@
+{
+  "id": "intro",
+  "title": "Introduction & Course Overview",
+  "description": "Overview of the Physical AI & Humanoid Robotics course",
+  "source": "@site/docs/intro.md",
+  "sourceDirName": ".",
+  "slug": "/intro",
+  "permalink": "/qwen/docs/intro",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/intro.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "title": "Introduction & Course Overview",
+    "description": "Overview of the Physical AI & Humanoid Robotics course",
+    "sidebar_position": 1,
+    "learning_outcomes": [
+      "Understand the course objectives and structure",
+      "Identify key concepts in Physical AI and Humanoid Robotics"
+    ],
+    "tags": [],
+    "source_of_truth": "Official course document"
+  },
+  "sidebar": "tutorialSidebar",
+  "next": {
+    "title": "Module 1 — ROS2: Robotic Nervous System",
+    "permalink": "/qwen/docs/module1-ros2"
+  }
+}

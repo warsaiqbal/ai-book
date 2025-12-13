@@ -1,0 +1,165 @@
+# Core Services API Contract
+
+## Voice Processing Service
+
+### POST /voice/process
+Process an incoming voice command using OpenAI Whisper.
+
+**Request**:
+```json
+{
+  "audio_data": "base64_encoded_audio",
+  "sample_rate": 16000,
+  "language": "en",
+  "model": "large-v2"
+}
+```
+
+**Response**:
+```json
+{
+  "transcription": "Move forward two meters",
+  "confidence": 0.94,
+  "processing_time": 1.2,
+  "language": "en"
+}
+```
+
+## LLM Cognitive Planning Service
+
+### POST /plan/cognitive
+Generate a sequence of robot actions from natural language using LLM.
+
+**Request**:
+```json
+{
+  "command": "Go to the kitchen and bring me a red cup",
+  "context": {
+    "environment_map_id": "env_001",
+    "robot_capabilities": ["navigation", "manipulation", "perception"],
+    "object_knowledge": ["cup", "kitchen", "red"]
+  },
+  "options": {
+    "model": "gpt-4-turbo",
+    "max_tokens": 1000,
+    "temperature": 0.3
+  }
+}
+```
+
+**Response**:
+```json
+{
+  "plan_id": "plan_001",
+  "action_sequence": [
+    {
+      "action_type": "navigate",
+      "parameters": {
+        "target_location": "kitchen"
+      },
+      "estimated_duration": 120
+    },
+    {
+      "action_type": "detect_object",
+      "parameters": {
+        "object_type": "cup",
+        "color": "red",
+        "search_radius": 2.0
+      },
+      "estimated_duration": 30
+    },
+    {
+      "action_type": "grasp_object",
+      "parameters": {
+        "object_id": "{{detected_object_id}}"
+      },
+      "estimated_duration": 25
+    }
+  ],
+  "metadata": {
+    "model_used": "gpt-4-turbo",
+    "tokens_used": 420,
+    "confidence": 0.87
+  }
+}
+```
+
+## State Management Service
+
+### GET /state/robot
+Get the current state of the robot.
+
+**Response**:
+```json
+{
+  "robot_id": "humanoid_001",
+  "timestamp": "2025-01-15T10:30:00Z",
+  "pose": {
+    "position": {"x": 1.0, "y": 2.0, "z": 0.0},
+    "orientation": {"x": 0.0, "y": 0.0, "z": 0.0, "w": 1.0}
+  },
+  "battery_level": 0.85,
+  "operational_status": "active",
+  "active_tasks": ["task_001"]
+}
+```
+
+### PUT /state/robot
+Update the robot state.
+
+**Request**:
+```json
+{
+  "pose": {
+    "position": {"x": 1.1, "y": 2.0, "z": 0.0},
+    "orientation": {"x": 0.0, "y": 0.0, "z": 0.1, "w": 0.995}
+  },
+  "battery_level": 0.84,
+  "operational_status": "active"
+}
+```
+
+## Task Execution Service
+
+### POST /task/execute
+Execute a planned sequence of actions.
+
+**Request**:
+```json
+{
+  "plan_id": "plan_001",
+  "execution_context": {
+    "timeout_seconds": 600,
+    "failure_recovery": "retry_once",
+    "monitoring_enabled": true
+  }
+}
+```
+
+**Response**:
+```json
+{
+  "execution_id": "exec_001",
+  "status": "started",
+  "estimated_completion": "2025-01-15T10:45:00Z"
+}
+```
+
+### GET /task/status/{execution_id}
+Get the status of a task execution.
+
+**Response**:
+```json
+{
+  "execution_id": "exec_001",
+  "status": "in_progress",
+  "current_step": 2,
+  "total_steps": 5,
+  "progress_percentage": 40.0,
+  "current_action": {
+    "action_type": "navigate",
+    "status": "executing",
+    "estimated_completion": "2025-01-15T10:35:00Z"
+  }
+}
+```

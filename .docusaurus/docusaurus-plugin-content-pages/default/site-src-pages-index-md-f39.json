@@ -1,0 +1,11 @@
+{
+  "type": "mdx",
+  "permalink": "/qwen/",
+  "source": "@site/src/pages/index.md",
+  "title": "Home",
+  "description": "Welcome to the Textbook",
+  "frontMatter": {
+    "title": "Home"
+  },
+  "unlisted": false
+}

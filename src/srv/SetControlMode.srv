@@ -1,0 +1,8 @@
+# Request
+string robot_name          # Name of the robot to change control mode for
+string control_mode        # New control mode (position, velocity, effort, impedance)
+---
+# Response
+bool success               # True if control mode was changed
+string message             # Status message
+string previous_mode       # Previous control mode

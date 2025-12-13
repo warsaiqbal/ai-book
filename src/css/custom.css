@@ -1,0 +1,67 @@
+/* Custom CSS for Physical AI & Humanoid Robotics Course */
+/* You can add custom styles here to override Docusaurus defaults */
+
+/* Example custom styles */
+.hero--primary {
+  background: linear-gradient(135deg, #6e45e2, #88d3ce);
+}
+
+/* Custom styles for robotics-themed content */
+.robotics-card {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 10px 0;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.robotics-card:hover {
+  box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+  transform: translateY(-2px);
+}
+
+/* Accessibility-focused styles */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Enhanced focus indicators for accessibility */
+button:focus,
+a:focus,
+input:focus,
+select:focus,
+textarea:focus,
+[tabindex]:focus {
+  outline: 3px solid #4c78f0;
+  outline-offset: 2px;
+}
+
+/* Custom styles for code blocks */
+.docusaurus-highlight-code-line {
+  background-color: rgba(0, 0, 0, 0.1);
+  display: block;
+  margin: 0 calc(-1 * var(--ifm-pre-padding));
+  padding: 0 var(--ifm-pre-padding);
+}
+
+/* Dark mode specific styles */
+html[data-theme='dark'] .docusaurus-highlight-code-line {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+/* Custom sidebar styles */
+.menu__list-item-collapsible--active {
+  background-color: #f0f8ff;
+}
+
+html[data-theme='dark'] .menu__list-item-collapsible--active {
+  background-color: rgba(100, 149, 237, 0.2);
+}

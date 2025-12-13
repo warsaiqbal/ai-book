@@ -1,0 +1,324 @@
+# API Contract: Digital Twin Simulation System
+
+## Overview
+This document defines the API contracts for the Digital Twin simulation system that integrates Gazebo for physics simulation and Unity for high-fidelity rendering.
+
+## Base URL
+`http://localhost:8080/api/v1`
+
+## Authentication
+All endpoints require a valid authentication token in the header:
+`Authorization: Bearer {token}`
+
+## Endpoints
+
+### Environment Management
+
+#### Create Simulation Environment
+- **POST** `/environments`
+- **Description**: Create a new simulation environment
+- **Request Body**:
+```json
+{
+  "name": "Test Environment",
+  "description": "A test environment for simulation",
+  "physics_config": {
+    "gravity": [0, 0, -9.81],
+    "friction": 0.5
+  },
+  "rendering_config": {
+    "lighting": "default",
+    "quality": "high"
+  }
+}
+```
+- **Response** (201 Created):
+```json
+{
+  "id": "env-12345",
+  "name": "Test Environment",
+  "description": "A test environment for simulation",
+  "created_at": "2025-12-12T10:00:00Z",
+  "physics_config": {
+    "gravity": [0, 0, -9.81],
+    "friction": 0.5
+  },
+  "rendering_config": {
+    "lighting": "default",
+    "quality": "high"
+  },
+  "status": "created"
+}
+```
+
+#### Get Environment Details
+- **GET** `/environments/{id}`
+- **Description**: Retrieve details of a specific simulation environment
+- **Response** (200 OK):
+```json
+{
+  "id": "env-12345",
+  "name": "Test Environment",
+  "description": "A test environment for simulation",
+  "created_at": "2025-12-12T10:00:00Z",
+  "updated_at": "2025-12-12T10:00:00Z",
+  "physics_config": {
+    "gravity": [0, 0, -9.81],
+    "friction": 0.5
+  },
+  "rendering_config": {
+    "lighting": "default",
+    "quality": "high"
+  },
+  "objects": [
+    {
+      "id": "obj-67890",
+      "type": "box",
+      "position": [1.0, 2.0, 0.0],
+      "rotation": [0.0, 0.0, 0.0],
+      "size": [1.0, 1.0, 1.0]
+    }
+  ],
+  "status": "running"
+}
+```
+
+#### Update Environment Parameters
+- **PUT** `/environments/{id}/parameters`
+- **Description**: Update parameters of a running environment (gravity, friction, etc.)
+- **Request Body**:
+```json
+{
+  "physics_config": {
+    "gravity": [0, 0, -7.5],
+    "friction": 0.8
+  }
+}
+```
+- **Response** (200 OK):
+```json
+{
+  "id": "env-12345",
+  "updated_parameters": {
+    "gravity": [0, 0, -7.5],
+    "friction": 0.8
+  },
+  "status": "parameters_updated"
+}
+```
+
+### Robot Management
+
+#### Add Robot to Environment
+- **POST** `/environments/{id}/robots`
+- **Description**: Add a robot to an existing environment
+- **Request Body**:
+```json
+{
+  "robot_name": "TestRobot1",
+  "urdf_path": "/models/test_robot.urdf",
+  "unity_model_path": "/assets/test_robot.fbx",
+  "initial_position": [0.0, 0.0, 0.0],
+  "initial_orientation": [0.0, 0.0, 0.0]
+}
+```
+- **Response** (201 Created):
+```json
+{
+  "robot_id": "robot-12345",
+  "environment_id": "env-12345",
+  "robot_name": "TestRobot1",
+  "status": "added_to_environment"
+}
+```
+
+#### Control Robot Movement
+- **POST** `/environments/{id}/robots/{robotId}/move`
+- **Description**: Control robot movement in the environment
+- **Request Body**:
+```json
+{
+  "target_position": [2.0, 3.0, 0.0],
+  "max_velocity": 1.0
+}
+```
+- **Response** (200 OK):
+```json
+{
+  "robot_id": "robot-12345",
+  "command": "move_to",
+  "target_position": [2.0, 3.0, 0.0],
+  "status": "command_sent"
+}
+```
+
+### Sensor Simulation
+
+#### Get LiDAR Data
+- **GET** `/environments/{id}/robots/{robotId}/sensors/lidar`
+- **Description**: Retrieve simulated LiDAR sensor data
+- **Query Parameters**:
+  - `resolution`: Optional, specifies point density (default: medium)
+- **Response** (200 OK):
+```json
+{
+  "sensor_id": "lidar-1",
+  "robot_id": "robot-12345",
+  "timestamp": "2025-12-12T10:00:00.123Z",
+  "point_cloud": [
+    {"x": 1.0, "y": 2.0, "z": 0.0, "intensity": 255},
+    {"x": 1.1, "y": 2.1, "z": 0.0, "intensity": 240}
+  ],
+  "scan_angle": 270,
+  "scan_resolution": 0.25
+}
+```
+
+#### Get Depth Camera Data
+- **GET** `/environments/{id}/robots/{robotId}/sensors/depth_camera`
+- **Description**: Retrieve simulated depth camera data
+- **Response** (200 OK):
+```json
+{
+  "sensor_id": "depth_camera-1",
+  "robot_id": "robot-12345",
+  "timestamp": "2025-12-12T10:00:00.123Z",
+  "depth_image": {
+    "width": 640,
+    "height": 480,
+    "data": "base64_encoded_depth_data",
+    "format": "depth16"
+  },
+  "rgb_image": {
+    "width": 640,
+    "height": 480,
+    "data": "base64_encoded_rgb_data",
+    "format": "rgb8"
+  },
+  "field_of_view": 60
+}
+```
+
+#### Get IMU Data
+- **GET** `/environments/{id}/robots/{robotId}/sensors/imu`
+- **Description**: Retrieve simulated IMU sensor data
+- **Response** (200 OK):
+```json
+{
+  "sensor_id": "imu-1",
+  "robot_id": "robot-12345",
+  "timestamp": "2025-12-12T10:00:00.123Z",
+  "linear_acceleration": {"x": 0.1, "y": 0.05, "z": 9.76},
+  "angular_velocity": {"x": 0.01, "y": 0.02, "z": 0.0},
+  "orientation": {"x": 0.0, "y": 0.0, "z": 0.1, "w": 0.995}
+}
+```
+
+### Synchronization
+
+#### Synchronize Environment States
+- **POST** `/synchronization/sync`
+- **Description**: Synchronize states between Gazebo physics and Unity rendering
+- **Request Body**:
+```json
+{
+  "environment_id": "env-12345",
+  "sync_method": "full_state_transfer"
+}
+```
+- **Response** (200 OK):
+```json
+{
+  "synchronization_id": "sync-98765",
+  "environment_id": "env-12345",
+  "timestamp": "2025-12-12T10:00:00Z",
+  "status": "synchronized",
+  "physics_entities_synced": 15,
+  "rendering_entities_synced": 15
+}
+```
+
+#### Get Synchronization Status
+- **GET** `/synchronization/status/{environmentId}`
+- **Description**: Get the synchronization status between Gazebo and Unity
+- **Response** (200 OK):
+```json
+{
+  "environment_id": "env-12345",
+  "gazebo_status": "running",
+  "unity_status": "running",
+  "last_sync_time": "2025-12-12T10:00:00Z",
+  "sync_status": "synchronized",
+  "gazebo_entities": 15,
+  "unity_entities": 15,
+  "desync_detected": false
+}
+```
+
+## Error Responses
+
+All endpoints may return error responses in the following format:
+
+- **400 Bad Request**:
+```json
+{
+  "error": "bad_request",
+  "message": "Invalid input parameters",
+  "details": "Required field 'name' is missing"
+}
+```
+
+- **401 Unauthorized**:
+```json
+{
+  "error": "unauthorized",
+  "message": "Authentication token is missing or invalid"
+}
+```
+
+- **404 Not Found**:
+```json
+{
+  "error": "not_found",
+  "message": "Requested resource does not exist"
+}
+```
+
+- **500 Internal Server Error**:
+```json
+{
+  "error": "internal_server_error",
+  "message": "An unexpected error occurred"
+}
+```
+
+## Data Types
+
+### Common Data Types
+
+#### Vector3
+Represents a 3D vector with x, y, z coordinates.
+```json
+{
+  "x": 1.0,
+  "y": 2.0,
+  "z": 0.0
+}
+```
+
+#### Quaternion
+Represents rotation using quaternion values.
+```json
+{
+  "x": 0.0,
+  "y": 0.0,
+  "z": 0.1,
+  "w": 0.995
+}
+```
+
+#### Coordinate System
+The system uses a right-handed coordinate system:
+- X: Forward
+- Y: Left
+- Z: Up

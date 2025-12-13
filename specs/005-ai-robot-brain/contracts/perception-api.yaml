@@ -1,0 +1,415 @@
+# OpenAPI Contract: Perception Services
+
+openapi: 3.0.3
+info:
+  title: Isaac Perception Services
+  description: APIs for perception services using NVIDIA Isaac technology
+  version: 1.0.0
+  contact:
+    name: Robot Perception Team
+    email: perception@example.com
+servers:
+  - url: http://localhost:8080
+    description: Local Isaac Sim instance
+  - url: https://isaac-perception.example.com
+    description: Production Isaac Perception Service
+
+paths:
+  /v1/perception/detect:
+    post:
+      summary: Run object detection on input image
+      description: Performs object detection using trained models on the input image
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DetectionRequest'
+      responses:
+        '200':
+          description: Detection results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DetectionResponse'
+        '400':
+          description: Invalid input parameters
+        '500':
+          description: Internal server error
+      security:
+        - bearerAuth: []
+
+  /v1/perception/segment:
+    post:
+      summary: Run segmentation on input image
+      description: Performs semantic or instance segmentation on the input image
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SegmentationRequest'
+      responses:
+        '200':
+          description: Segmentation results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SegmentationResponse'
+        '400':
+          description: Invalid input parameters
+        '500':
+          description: Internal server error
+      security:
+        - bearerAuth: []
+
+  /v1/perception/vslam:
+    post:
+      summary: Run Visual SLAM
+      description: Performs Visual SLAM to estimate camera pose and reconstruct environment
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VSLAMRequest'
+      responses:
+        '200':
+          description: VSLAM results including pose and map
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VSLAMResponse'
+        '400':
+          description: Invalid input parameters
+        '500':
+          description: Internal server error
+      security:
+        - bearerAuth: []
+
+  /v1/perception/models:
+    get:
+      summary: List available perception models
+      description: Returns a list of all available perception models for selection
+      responses:
+        '200':
+          description: List of perception models
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ModelListResponse'
+        '500':
+          description: Internal server error
+      security:
+        - bearerAuth: []
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    DetectionRequest:
+      type: object
+      required:
+        - image
+        - modelId
+      properties:
+        image:
+          type: string
+          format: byte
+          description: Base64 encoded image data
+        modelId:
+          type: string
+          description: ID of the detection model to use
+        confidenceThreshold:
+          type: number
+          format: float
+          minimum: 0.0
+          maximum: 1.0
+          default: 0.7
+          description: Minimum confidence threshold for detections
+        classes:
+          type: array
+          items:
+            type: string
+          description: List of classes to detect, empty means all classes
+
+    DetectionResponse:
+      type: object
+      properties:
+        requestId:
+          type: string
+          description: ID of the request
+        detections:
+          type: array
+          items:
+            $ref: '#/components/schemas/Detection'
+        processingTimeMs:
+          type: number
+          format: float
+          description: Time taken to process the request in milliseconds
+        inputImageSize:
+          $ref: '#/components/schemas/ImageSize'
+
+    SegmentationRequest:
+      type: object
+      required:
+        - image
+        - modelId
+      properties:
+        image:
+          type: string
+          format: byte
+          description: Base64 encoded image data
+        modelId:
+          type: string
+          description: ID of the segmentation model to use
+        segmentationType:
+          type: string
+          enum: [semantic, instance, panoptic]
+          default: semantic
+          description: Type of segmentation to perform
+
+    SegmentationResponse:
+      type: object
+      properties:
+        requestId:
+          type: string
+          description: ID of the request
+        segmentationMask:
+          type: string
+          format: byte
+          description: Base64 encoded segmentation mask
+        classes:
+          type: array
+          items:
+            $ref: '#/components/schemas/ClassWithConfidence'
+        processingTimeMs:
+          type: number
+          format: float
+          description: Time taken to process the request in milliseconds
+
+    VSLAMRequest:
+      type: object
+      required:
+        - images
+        - calibration
+      properties:
+        images:
+          type: array
+          items:
+            type: string
+            format: byte
+          description: Sequence of base64 encoded images
+        calibration:
+          $ref: '#/components/schemas/CameraCalibration'
+        imageWidth:
+          type: integer
+          description: Width of input images in pixels
+        imageHeight:
+          type: integer
+          description: Height of input images in pixels
+        returnMap:
+          type: boolean
+          default: true
+          description: Whether to return the reconstructed map
+
+    VSLAMResponse:
+      type: object
+      properties:
+        requestId:
+          type: string
+          description: ID of the request
+        cameraPoses:
+          type: array
+          items:
+            $ref: '#/components/schemas/Pose'
+          description: Estimated camera poses for each frame
+        reconstructedMap:
+          $ref: '#/components/schemas/Pointcloud'
+          description: Reconstructed 3D map (if requested)
+        processingTimeMs:
+          type: number
+          format: float
+          description: Time taken to process the request in milliseconds
+
+    Detection:
+      type: object
+      properties:
+        className:
+          type: string
+          description: Name of the detected class
+        confidence:
+          type: number
+          format: float
+          description: Confidence score between 0.0 and 1.0
+        boundingBox:
+          $ref: '#/components/schemas/BoundingBox'
+        mask:
+          type: string
+          format: byte
+          description: Base64 encoded segmentation mask for instance detection
+
+    BoundingBox:
+      type: object
+      properties:
+        x:
+          type: number
+          format: float
+          description: X coordinate of top-left corner
+        y:
+          type: number
+          format: float
+          description: Y coordinate of top-left corner
+        width:
+          type: number
+          format: float
+          description: Width of the bounding box
+        height:
+          type: number
+          format: float
+          description: Height of the bounding box
+
+    ClassWithConfidence:
+      type: object
+      properties:
+        className:
+          type: string
+          description: Name of the class
+        confidence:
+          type: number
+          format: float
+          description: Confidence score between 0.0 and 1.0
+
+    ImageSize:
+      type: object
+      properties:
+        width:
+          type: integer
+          description: Image width in pixels
+        height:
+          type: integer
+          description: Image height in pixels
+
+    CameraCalibration:
+      type: object
+      properties:
+        cameraMatrix:
+          type: array
+          items:
+            type: number
+            format: float
+          minItems: 9
+          maxItems: 9
+          description: 3x3 camera intrinsic matrix in row-major order
+        distortionCoefficients:
+          type: array
+          items:
+            type: number
+            format: float
+          description: Distortion coefficients [k1, k2, p1, p2, k3, ...]
+
+    Pose:
+      type: object
+      properties:
+        position:
+          $ref: '#/components/schemas/Vector3'
+        orientation:
+          $ref: '#/components/schemas/Quaternion'
+
+    Vector3:
+      type: object
+      properties:
+        x:
+          type: number
+          format: float
+        y:
+          type: number
+          format: float
+        z:
+          type: number
+          format: float
+
+    Quaternion:
+      type: object
+      properties:
+        x:
+          type: number
+          format: float
+        y:
+          type: number
+          format: float
+        z:
+          type: number
+          format: float
+        w:
+          type: number
+          format: float
+
+    Pointcloud:
+      type: object
+      properties:
+        points:
+          type: array
+          items:
+            $ref: '#/components/schemas/Vector3'
+          description: Array of 3D points
+        colors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Color'
+          description: Optional color information for each point
+
+    Color:
+      type: object
+      properties:
+        r:
+          type: integer
+          minimum: 0
+          maximum: 255
+        g:
+          type: integer
+          minimum: 0
+          maximum: 255
+        b:
+          type: integer
+          minimum: 0
+          maximum: 255
+
+    ModelListResponse:
+      type: object
+      properties:
+        models:
+          type: array
+          items:
+            $ref: '#/components/schemas/PerceptionModel'
+
+    PerceptionModel:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the model
+        name:
+          type: string
+          description: Display name of the model
+        type:
+          type: string
+          enum: [object_detection, segmentation, classification, vslam]
+          description: Type of perception task
+        inputChannels:
+          type: integer
+          description: Number of input channels for the model
+        inputResolution:
+          $ref: '#/components/schemas/ImageSize'
+        accuracy:
+          type: number
+          format: float
+          description: Model accuracy metric
+        latency:
+          type: number
+          format: float
+          description: Processing latency in milliseconds

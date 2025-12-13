@@ -1,0 +1,7 @@
+# Request
+string robot_name          # Name of the robot to get state for
+---
+# Response
+bool success               # True if request was successful
+string message             # Status message
+RobotState state           # Current robot state

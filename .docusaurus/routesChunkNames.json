@@ -1,0 +1,160 @@
+{
+  "/qwen/__docusaurus/debug-cfe": {
+    "__comp": "__comp---theme-debug-config-23-a-2ff",
+    "__context": {
+      "plugin": "plugin---qwen-docusaurus-debugb-38-a33"
+    }
+  },
+  "/qwen/__docusaurus/debug/config-055": {
+    "__comp": "__comp---theme-debug-config-23-a-2ff",
+    "__context": {
+      "plugin": "plugin---qwen-docusaurus-debugb-38-a33"
+    }
+  },
+  "/qwen/__docusaurus/debug/content-212": {
+    "__comp": "__comp---theme-debug-contentba-8-ce7",
+    "__context": {
+      "plugin": "plugin---qwen-docusaurus-debugb-38-a33"
+    },
+    "__props": "__props---qwen-docusaurus-debug-contentb-56-5a8"
+  },
+  "/qwen/__docusaurus/debug/globalData-5ae": {
+    "__comp": "__comp---theme-debug-global-dataede-0fa",
+    "__context": {
+      "plugin": "plugin---qwen-docusaurus-debugb-38-a33"
+    }
+  },
+  "/qwen/__docusaurus/debug/metadata-fe2": {
+    "__comp": "__comp---theme-debug-site-metadata-68-e-3d4",
+    "__context": {
+      "plugin": "plugin---qwen-docusaurus-debugb-38-a33"
+    }
+  },
+  "/qwen/__docusaurus/debug/registry-3af": {
+    "__comp": "__comp---theme-debug-registry-679-501",
+    "__context": {
+      "plugin": "plugin---qwen-docusaurus-debugb-38-a33"
+    }
+  },
+  "/qwen/__docusaurus/debug/routes-db5": {
+    "__comp": "__comp---theme-debug-routes-946-699",
+    "__context": {
+      "plugin": "plugin---qwen-docusaurus-debugb-38-a33"
+    }
+  },
+  "/qwen/login-fbd": {
+    "__comp": "__comp---site-src-pages-login-js-380-710",
+    "__context": {
+      "plugin": "plugin---qwen-logina-74-2d4"
+    },
+    "config": "config---qwen-login-5-e-9-0d3"
+  },
+  "/qwen/docs-686": {
+    "__comp": "__comp---theme-docs-root-5-e-9-0b6",
+    "__context": {
+      "plugin": "plugin---qwen-docsaba-fda"
+    }
+  },
+  "/qwen/docs-f24": {
+    "__comp": "__comp---theme-doc-version-roota-7-b-5de",
+    "__props": "__props---qwen-docs-61-c-e93"
+  },
+  "/qwen/docs/tags-608": {
+    "__comp": "__comp---theme-doc-tags-list-page-372-89e",
+    "__props": "__props---qwen-docs-tags-186-0b6"
+  },
+  "/qwen/docs/tags/action-839": {
+    "__comp": "__comp---theme-doc-tag-doc-list-pagedf-2-9f0",
+    "__props": "__props---qwen-docs-tags-action-423-576"
+  },
+  "/qwen/docs/tags/ai-3ef": {
+    "__comp": "__comp---theme-doc-tag-doc-list-pagedf-2-9f0",
+    "__props": "__props---qwen-docs-tags-ai-737-d09"
+  },
+  "/qwen/docs/tags/gazebo-f1c": {
+    "__comp": "__comp---theme-doc-tag-doc-list-pagedf-2-9f0",
+    "__props": "__props---qwen-docs-tags-gazebo-24-e-026"
+  },
+  "/qwen/docs/tags/isaac-c3e": {
+    "__comp": "__comp---theme-doc-tag-doc-list-pagedf-2-9f0",
+    "__props": "__props---qwen-docs-tags-isaacafd-8b3"
+  },
+  "/qwen/docs/tags/language-9d5": {
+    "__comp": "__comp---theme-doc-tag-doc-list-pagedf-2-9f0",
+    "__props": "__props---qwen-docs-tags-language-1-d-1-751"
+  },
+  "/qwen/docs/tags/ros-2-855": {
+    "__comp": "__comp---theme-doc-tag-doc-list-pagedf-2-9f0",
+    "__props": "__props---qwen-docs-tags-ros-2-ffe-7b5"
+  },
+  "/qwen/docs/tags/unity-f17": {
+    "__comp": "__comp---theme-doc-tag-doc-list-pagedf-2-9f0",
+    "__props": "__props---qwen-docs-tags-unityb-27-5c7"
+  },
+  "/qwen/docs/tags/vision-4ae": {
+    "__comp": "__comp---theme-doc-tag-doc-list-pagedf-2-9f0",
+    "__props": "__props---qwen-docs-tags-visionb-38-7b0"
+  },
+  "/qwen/docs/tags/vla-6f7": {
+    "__comp": "__comp---theme-doc-tag-doc-list-pagedf-2-9f0",
+    "__props": "__props---qwen-docs-tags-vla-8-e-3-197"
+  },
+  "/qwen/docs-af9": {
+    "__comp": "__comp---theme-doc-roota-94-67a"
+  },
+  "/qwen/docs/appendix-33d": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---qwen-docs-appendixcdd-b15"
+  },
+  "/qwen/docs/assessments-capstone-c18": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---qwen-docs-assessments-capstoned-3-a-fc7"
+  },
+  "/qwen/docs/cloud-vs-onprem-96d": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---qwen-docs-cloud-vs-onprem-854-508"
+  },
+  "/qwen/docs/deployment-integrations-860": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---qwen-docs-deployment-integrations-38-c-067"
+  },
+  "/qwen/docs/hardware-requirements-009": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---qwen-docs-hardware-requirements-122-2ea"
+  },
+  "/qwen/docs/intro-75e": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---qwen-docs-intro-0-e-3-b2e"
+  },
+  "/qwen/docs/module1-ros2-b20": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---qwen-docs-module-1-ros-2848-4ae"
+  },
+  "/qwen/docs/module2-digital-twin-58c": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---qwen-docs-module-2-digital-twinbab-468"
+  },
+  "/qwen/docs/module3-isaac-c41": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---qwen-docs-module-3-isaacf-20-ee5"
+  },
+  "/qwen/docs/module4-vla-4b2": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---qwen-docs-module-4-vla-985-83b"
+  },
+  "/qwen/docs/robot-lab-options-dd0": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---qwen-docs-robot-lab-options-1-c-7-469"
+  },
+  "/qwen/docs/weekly-breakdown-236": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---qwen-docs-weekly-breakdown-2-ab-b96"
+  },
+  "/qwen/-47c": {
+    "__comp": "__comp---theme-mdx-page-1-f-3-b90",
+    "__context": {
+      "plugin": "plugin---qwen-logina-74-2d4"
+    },
+    "content": "content---qwen-f-39-818"
+  }
+}

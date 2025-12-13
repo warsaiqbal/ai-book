@@ -1,0 +1,28 @@
+{
+  "id": "assessments-capstone",
+  "title": "Assessments & Capstone",
+  "description": "Assessment Strategies",
+  "source": "@site/docs/assessments-capstone.md",
+  "sourceDirName": ".",
+  "slug": "/assessments-capstone",
+  "permalink": "/qwen/docs/assessments-capstone",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/assessments-capstone.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 7,
+  "frontMatter": {
+    "title": "Assessments & Capstone",
+    "sidebar_position": 7
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Weekly Breakdown (Weeks 1–13)",
+    "permalink": "/qwen/docs/weekly-breakdown"
+  },
+  "next": {
+    "title": "Hardware Requirements",
+    "permalink": "/qwen/docs/hardware-requirements"
+  }
+}

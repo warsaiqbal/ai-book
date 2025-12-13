@@ -1,0 +1,358 @@
+# OpenAPI Contract: Navigation Services
+
+openapi: 3.0.3
+info:
+  title: Isaac Navigation Services
+  description: APIs for navigation services using NVIDIA Isaac Nav2
+  version: 1.0.0
+  contact:
+    name: Robot Navigation Team
+    email: navigation@example.com
+servers:
+  - url: http://localhost:8081
+    description: Local Isaac Nav2 instance
+  - url: https://isaac-nav.example.com
+    description: Production Isaac Navigation Service
+
+paths:
+  /v1/navigation/plan:
+    post:
+      summary: Plan a path to a goal location
+      description: Plans a path from the current robot position to the specified goal location
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PathPlanRequest'
+      responses:
+        '200':
+          description: Path planning result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PathPlanResponse'
+        '400':
+          description: Invalid input parameters
+        '409':
+          description: Path planning failed
+        '500':
+          description: Internal server error
+      security:
+        - bearerAuth: []
+
+  /v1/navigation/execute:
+    post:
+      summary: Execute a planned path
+      description: Executes a previously planned path or sends the robot to a goal location
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NavigationRequest'
+      responses:
+        '200':
+          description: Navigation started successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NavigationResponse'
+        '400':
+          description: Invalid input parameters
+        '500':
+          description: Internal server error
+      security:
+        - bearerAuth: []
+
+  /v1/navigation/cancel:
+    post:
+      summary: Cancel current navigation
+      description: Cancels the current navigation task
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CancelRequest'
+      responses:
+        '200':
+          description: Navigation cancelled successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CancelResponse'
+        '400':
+          description: Invalid input parameters
+        '500':
+          description: Internal server error
+      security:
+        - bearerAuth: []
+
+  /v1/navigation/status:
+    get:
+      summary: Get current navigation status
+      description: Returns the current status of the navigation system
+      responses:
+        '200':
+          description: Current navigation status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NavigationStatusResponse'
+        '500':
+          description: Internal server error
+      security:
+        - bearerAuth: []
+
+  /v1/navigation/map:
+    get:
+      summary: Get current map
+      description: Returns the current map being used for navigation
+      parameters:
+        - name: resolution
+          in: query
+          required: false
+          schema:
+            type: number
+            format: float
+            default: 0.05
+            description: Resolution of the map in meters per cell
+        - name: include_occupancy
+          in: query
+          required: false
+          schema:
+            type: boolean
+            default: true
+            description: Whether to include occupancy information
+      responses:
+        '200':
+          description: Current map
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MapResponse'
+        '500':
+          description: Internal server error
+      security:
+        - bearerAuth: []
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    PathPlanRequest:
+      type: object
+      required:
+        - goal
+      properties:
+        start:
+          $ref: '#/components/schemas/Pose2D'
+          description: Start pose, if not provided uses current robot pose
+        goal:
+          $ref: '#/components/schemas/Pose2D'
+          description: Goal pose to plan to
+        planner:
+          type: string
+          enum: [auto, a_star, dijkstra, rrt_star, teb]
+          default: auto
+          description: Path planner to use
+        tolerance:
+          type: number
+          format: float
+          default: 0.5
+          description: Tolerance for goal acceptance in meters
+
+    PathPlanResponse:
+      type: object
+      properties:
+        pathId:
+          type: string
+          description: Unique identifier for the planned path
+        path:
+          type: array
+          items:
+            $ref: '#/components/schemas/Pose2D'
+          description: Array of waypoints in the path
+        pathLength:
+          type: number
+          format: float
+          description: Length of the planned path in meters
+        planningTimeMs:
+          type: number
+          format: float
+          description: Time taken to plan the path in milliseconds
+        success:
+          type: boolean
+          description: Whether path planning was successful
+
+    NavigationRequest:
+      type: object
+      required:
+        - goal
+      properties:
+        goal:
+          $ref: '#/components/schemas/Pose2D'
+          description: Goal pose to navigate to
+        path:
+          type: array
+          items:
+            $ref: '#/components/schemas/Pose2D'
+          description: Pre-planned path to follow (optional if goal is provided)
+        controller:
+          type: string
+          enum: [auto, dwa, teb, mpc]
+          default: auto
+          description: Controller to use for path following
+        speed:
+          type: number
+          format: float
+          default: 0.5
+          minimum: 0.1
+          maximum: 2.0
+          description: Target speed in m/s
+        tolerance:
+          type: number
+          format: float
+          default: 0.5
+          description: Tolerance for goal acceptance in meters
+
+    NavigationResponse:
+      type: object
+      properties:
+        navigationId:
+          type: string
+          description: Unique identifier for the navigation task
+        status:
+          type: string
+          enum: [pending, executing, completed, failed]
+          description: Current status of the navigation
+        estimatedTime:
+          type: number
+          format: float
+          description: Estimated time to reach goal in seconds
+
+    CancelRequest:
+      type: object
+      properties:
+        navigationId:
+          type: string
+          description: Specific navigation task to cancel, if not provided cancels current task
+
+    CancelResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the cancel operation was successful
+        cancelledNavigationId:
+          type: string
+          description: ID of the cancelled navigation task
+
+    NavigationStatusResponse:
+      type: object
+      properties:
+        navigationId:
+          type: string
+          description: ID of current navigation task
+        status:
+          type: string
+          enum: [idle, planning, executing, paused, completed, failed, cancelled]
+          description: Current navigation status
+        currentPose:
+          $ref: '#/components/schemas/Pose2D'
+          description: Current robot pose
+        currentGoal:
+          $ref: '#/components/schemas/Pose2D'
+          description: Current navigation goal
+        remainingDistance:
+          type: number
+          format: float
+          description: Remaining distance to goal in meters
+        progress:
+          type: number
+          format: float
+          minimum: 0.0
+          maximum: 1.0
+          description: Progress toward goal (0.0 to 1.0)
+
+    MapResponse:
+      type: object
+      properties:
+        resolution:
+          type: number
+          format: float
+          description: Resolution of the map in meters per cell
+        origin:
+          $ref: '#/components/schemas/Pose2D'
+          description: Origin of the map in world coordinates
+        width:
+          type: integer
+          description: Width of the map in cells
+        height:
+          type: integer
+          description: Height of the map in cells
+        data:
+          type: array
+          items:
+            type: integer
+            minimum: 0
+            maximum: 100
+          description: Array of occupancy values (0-100, -1 for unknown)
+
+    Pose2D:
+      type: object
+      properties:
+        x:
+          type: number
+          format: float
+          description: X coordinate in meters
+        y:
+          type: number
+          format: float
+          description: Y coordinate in meters
+        theta:
+          type: number
+          format: float
+          description: Rotation angle in radians
+
+    Vector3:
+      type: object
+      properties:
+        x:
+          type: number
+          format: float
+        y:
+          type: number
+          format: float
+        z:
+          type: number
+          format: float
+
+    Quaternion:
+      type: object
+      properties:
+        x:
+          type: number
+          format: float
+        y:
+          type: number
+          format: float
+        z:
+          type: number
+          format: float
+        w:
+          type: number
+          format: float
+
+    Pose:
+      type: object
+      properties:
+        position:
+          $ref: '#/components/schemas/Vector3'
+        orientation:
+          $ref: '#/components/schemas/Quaternion'

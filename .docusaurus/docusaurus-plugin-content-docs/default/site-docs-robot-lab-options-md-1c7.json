@@ -1,0 +1,28 @@
+{
+  "id": "robot-lab-options",
+  "title": "Robot Lab Options",
+  "description": "Academic Laboratory Setup",
+  "source": "@site/docs/robot-lab-options.md",
+  "sourceDirName": ".",
+  "slug": "/robot-lab-options",
+  "permalink": "/qwen/docs/robot-lab-options",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/robot-lab-options.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 9,
+  "frontMatter": {
+    "title": "Robot Lab Options",
+    "sidebar_position": 9
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Hardware Requirements",
+    "permalink": "/qwen/docs/hardware-requirements"
+  },
+  "next": {
+    "title": "Cloud vs On-Prem Considerations",
+    "permalink": "/qwen/docs/cloud-vs-onprem"
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "id": "module3-isaac",
+  "title": "Module 3 — NVIDIA Isaac: AI-Robot Brain",
+  "description": "NVIDIA's robotics platform for AI inference",
+  "source": "@site/docs/module3-isaac.md",
+  "sourceDirName": ".",
+  "slug": "/module3-isaac",
+  "permalink": "/qwen/docs/module3-isaac",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/module3-isaac.md",
+  "tags": [
+    {
+      "inline": true,
+      "label": "isaac",
+      "permalink": "/qwen/docs/tags/isaac"
+    },
+    {
+      "inline": true,
+      "label": "ai",
+      "permalink": "/qwen/docs/tags/ai"
+    }
+  ],
+  "version": "current",
+  "sidebarPosition": 4,
+  "frontMatter": {
+    "title": "Module 3 — NVIDIA Isaac: AI-Robot Brain",
+    "description": "NVIDIA's robotics platform for AI inference",
+    "sidebar_position": 4,
+    "learning_outcomes": [
+      "Implement AI models using NVIDIA Isaac",
+      "Deploy perception and navigation systems"
+    ],
+    "tags": [
+      "isaac",
+      "ai"
+    ],
+    "source_of_truth": "Official course document"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Module 2 — Gazebo & Unity: The Digital Twin",
+    "permalink": "/qwen/docs/module2-digital-twin"
+  },
+  "next": {
+    "title": "Module 4 — Vision-Language-Action (VLA)",
+    "permalink": "/qwen/docs/module4-vla"
+  }
+}

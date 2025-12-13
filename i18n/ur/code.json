@@ -1,0 +1,14 @@
+{
+  "theme.ErrorPageContent.title": {
+    "message": "سائٹ پر کچھ خرابی ہے",
+    "description": "The title of the error page"
+  },
+  "theme.NotFound.title": {
+    "message": "صفحہ نہیں ملا",
+    "description": "The title of the 404 page"
+  },
+  "theme.NotFound.p1": {
+    "message": "آپ جس صفحے کو تلاش کر رہے ہیں، وہ موجود نہیں ہے۔",
+    "description": "The first paragraph of the 404 page"
+  }
+}

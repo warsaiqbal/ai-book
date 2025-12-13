@@ -1,0 +1,450 @@
+# API Contracts: Vision-Language-Action (VLA) Robotics
+
+## 1. Voice Command Service API
+
+### POST /voice-command/process
+Submit a voice command for processing through the VLA pipeline.
+
+**Request**:
+```json
+{
+  "audio_data": "base64_encoded_audio",
+  "audio_format": "wav",
+  "language": "en-US",
+  "device_id": "robot_001_mic_array"
+}
+```
+
+**Response**:
+```json
+{
+  "command_id": "uuid-string",
+  "transcription": "Clean the room",
+  "confidence": 0.92,
+  "intent": "CLEAN_ROOM",
+  "timestamp": "2025-01-15T10:30:00Z"
+}
+```
+
+### GET /voice-command/{command_id}
+Get the status and results of a voice command processing.
+
+**Response**:
+```json
+{
+  "command_id": "uuid-string",
+  "transcription": "Clean the room",
+  "confidence": 0.92,
+  "intent": "CLEAN_ROOM",
+  "plan_id": "plan-uuid-string",
+  "status": "PROCESSED|FAILED|IN_PROGRESS",
+  "error": null,
+  "timestamp": "2025-01-15T10:30:00Z"
+}
+```
+
+## 2. Cognitive Planning API
+
+### POST /plan/generate
+Generate an action plan from a natural language command.
+
+**Request**:
+```json
+{
+  "command_text": "Go to the kitchen, find the red cup, and bring it to the table",
+  "environment_map_id": "map-uuid-string",
+  "robot_capabilities": [
+    "NAVIGATION",
+    "MANIPULATION",
+    "PERCEPTION"
+  ],
+  "constraints": {
+    "max_duration_seconds": 300,
+    "avoid_safety_zones": true,
+    "preferred_gripper": "right"
+  }
+}
+```
+
+**Response**:
+```json
+{
+  "plan_id": "plan-uuid-string",
+  "action_sequence": [
+    {
+      "step_id": "step-001",
+      "type": "NAVIGATION",
+      "description": "Navigate to kitchen area",
+      "parameters": {
+        "target_pose": {
+          "position": {"x": 2.0, "y": 3.5, "z": 0.0},
+          "orientation": {"x": 0, "y": 0, "z": 0, "w": 1}
+        }
+      },
+      "estimated_duration": 45
+    },
+    {
+      "step_id": "step-002",
+      "type": "PERCEPTION",
+      "description": "Detect red cup in vicinity",
+      "parameters": {
+        "object_class": "cup",
+        "color": "red",
+        "search_area_radius": 2.0
+      },
+      "estimated_duration": 15
+    },
+    {
+      "step_id": "step-003",
+      "type": "MANIPULATION",
+      "description": "Grasp the detected cup",
+      "parameters": {
+        "object_id": "detected-object-uuid",
+        "gripper": "right"
+      },
+      "estimated_duration": 20
+    },
+    {
+      "step_id": "step-004",
+      "type": "NAVIGATION",
+      "description": "Return to table area",
+      "parameters": {
+        "target_pose": {
+          "position": {"x": 0.5, "y": 0.5, "z": 0.0},
+          "orientation": {"x": 0, "y": 0, "z": 0, "w": 1}
+        }
+      },
+      "estimated_duration": 50
+    },
+    {
+      "step_id": "step-005",
+      "type": "MANIPULATION",
+      "description": "Place cup on table",
+      "parameters": {
+        "placement_pose": {
+          "position": {"x": 0.6, "y": 0.6, "z": 0.8},
+          "orientation": {"x": 0, "y": 0, "z": 0, "w": 1}
+        },
+        "gripper": "right"
+      },
+      "estimated_duration": 15
+    }
+  ],
+  "estimated_total_duration": 145,
+  "status": "GENERATED"
+}
+```
+
+### PUT /plan/{plan_id}/execute
+Initiate execution of a generated action plan.
+
+**Response**:
+```json
+{
+  "execution_context_id": "exec-uuid-string",
+  "plan_id": "plan-uuid-string",
+  "status": "EXECUTING",
+  "start_time": "2025-01-15T10:35:00Z"
+}
+```
+
+## 3. Robot State API
+
+### GET /robot/state
+Get the current state of the robot.
+
+**Response**:
+```json
+{
+  "robot_state": {
+    "id": "robot_001",
+    "timestamp": "2025-01-15T10:32:45Z",
+    "pose": {
+      "position": {"x": 1.2, "y": 0.8, "z": 0.0},
+      "orientation": {"x": 0, "y": 0, "z": 0.707, "w": 0.707}
+    },
+    "joint_states": [
+      {"name": "shoulder_pan", "position": 0.5, "velocity": 0.1, "effort": 5.2},
+      {"name": "shoulder_lift", "position": -1.2, "velocity": -0.05, "effort": 8.7}
+    ],
+    "battery_level": 87.3,
+    "operational_status": "ACTIVE",
+    "active_tasks": ["task-uuid-string"],
+    "connected": true,
+    "capabilities": [
+      {"type": "NAVIGATION", "name": "omnidirectional_drive", "enabled": true},
+      {"type": "MANIPULATION", "name": "dexterous_hands", "enabled": true},
+      {"type": "PERCEPTION", "name": "RGBD_camera", "enabled": true}
+    ]
+  }
+}
+```
+
+### GET /robot/state/wait-for-change
+Long-polling endpoint to wait for robot state changes.
+
+**Query parameters**:
+- `timeout_seconds`: How long to wait for changes (default: 30)
+- `fields`: Comma-separated list of fields to monitor (optional)
+
+**Response**:
+```json
+{
+  "state_change": {
+    "field": "pose",
+    "previous_value": {"position": {"x": 1.2, "y": 0.8, "z": 0.0}},
+    "current_value": {"position": {"x": 1.5, "y": 0.8, "z": 0.0}},
+    "timestamp": "2025-01-15T10:33:10Z"
+  }
+}
+```
+
+## 4. Object Detection API
+
+### POST /vision/detect
+Detect objects in the current camera view.
+
+**Request**:
+```json
+{
+  "camera_feed": "front_camera_rgb",
+  "detection_classes": ["cup", "bottle", "person"],
+  "confidence_threshold": 0.7
+}
+```
+
+**Response**:
+```json
+{
+  "request_id": "req-uuid-string",
+  "detected_objects": [
+    {
+      "id": "obj-uuid-string",
+      "class_label": "cup",
+      "confidence": 0.92,
+      "bounding_box": {
+        "center": {"x": 0.3, "y": -0.1, "z": 0.8},
+        "dimensions": {"x": 0.08, "y": 0.08, "z": 0.1}
+      },
+      "center": {"x": 0.3, "y": -0.1, "z": 0.8},
+      "pose": {
+        "position": {"x": 0.3, "y": -0.1, "z": 0.8},
+        "orientation": {"x": 0, "y": 0, "z": 0, "w": 1}
+      },
+      "affordances": [
+        {
+          "type": "grasp",
+          "position": {"x": 0.3, "y": -0.1, "z": 0.85},
+          "direction": {"x": 0, "y": 0, "z": 1},
+          "stability_score": 0.85
+        }
+      ],
+      "color": {"r": 255, "g": 0, "b": 0},
+      "is_graspable": true,
+      "grasp_points": [
+        {
+          "position": {"x": 0.32, "y": -0.1, "z": 0.87},
+          "orientation": {"x": 0, "y": 0, "z": 0.707, "w": 0.707},
+          "stability_score": 0.9,
+          "grasp_type": "precision"
+        }
+      ],
+      "weight_estimate": 0.2
+    }
+  ],
+  "processing_time_ms": 142
+}
+```
+
+### POST /vision/track/{object_id}
+Start tracking a specific object across frames.
+
+**Response**:
+```json
+{
+  "tracking_session_id": "track-uuid-string",
+  "object_id": "obj-uuid-string",
+  "status": "TRACKING_STARTED",
+  "estimated_completion_time": "2025-01-15T10:35:30Z"
+}
+```
+
+## 5. Navigation API
+
+### POST /navigation/go-to
+Send the robot to a specific pose.
+
+**Request**:
+```json
+{
+  "target_pose": {
+    "position": {"x": 5.0, "y": 3.0, "z": 0.0},
+    "orientation": {"x": 0, "y": 0, "z": 0, "w": 1}
+  },
+  "planning_options": {
+    "allow_dynamic_obstacles": true,
+    "prefer_shortest_path": false,
+    "clearance_distance": 0.5
+  },
+  "timeout_seconds": 120
+}
+```
+
+**Response**:
+```json
+{
+  "navigation_id": "nav-uuid-string",
+  "status": "NAVIGATING",
+  "estimated_arrival_time": "2025-01-15T10:38:30Z",
+  "path": [
+    {"x": 1.3, "y": 0.8, "z": 0.0},
+    {"x": 2.5, "y": 1.2, "z": 0.0},
+    {"x": 3.7, "y": 2.1, "z": 0.0},
+    {"x": 5.0, "y": 3.0, "z": 0.0}
+  ]
+}
+```
+
+### GET /navigation/status/{navigation_id}
+Get the status of an ongoing navigation task.
+
+**Response**:
+```json
+{
+  "navigation_id": "nav-uuid-string",
+  "status": "IN_PROGRESS|ARRIVED|FAILED|REPLAN_NEEDED",
+  "current_pose": {
+    "position": {"x": 3.2, "y": 1.8, "z": 0.0},
+    "orientation": {"x": 0, "y": 0, "z": 0.1, "w": 0.995}
+  },
+  "progress_percentage": 65.4,
+  "remaining_waypoints": 2,
+  "estimated_completion_time": "2025-01-15T10:38:45Z",
+  "last_replan_reason": "DYNAMIC_OBSTACLE"
+}
+```
+
+## 6. Manipulation API
+
+### POST /manipulation/grasp
+Command the robot to grasp an object.
+
+**Request**:
+```json
+{
+  "object_id": "obj-uuid-string",
+  "gripper": "right",
+  "grasp_point": {
+    "position": {"x": 0.32, "y": -0.1, "z": 0.87},
+    "orientation": {"x": 0, "y": 0, "z": 0.707, "w": 0.707}
+  },
+  "force_limit_newtons": 20,
+  "timeout_seconds": 30
+}
+```
+
+**Response**:
+```json
+{
+  "manipulation_id": "manip-uuid-string",
+  "status": "GRASPING|SUCCESS|FAILURE",
+  "success": true,
+  "failure_reason": null,
+  "grasped_object_id": "obj-uuid-string",
+  "completion_time": "2025-01-15T10:40:22Z"
+}
+```
+
+### POST /manipulation/place
+Command the robot to place a grasped object.
+
+**Request**:
+```json
+{
+  "placement_pose": {
+    "position": {"x": 0.6, "y": 0.6, "z": 0.8},
+    "orientation": {"x": 0, "y": 0, "z": 0, "w": 1}
+  },
+  "gripper": "right",
+  "release_force": 5,
+  "timeout_seconds": 30
+}
+```
+
+**Response**:
+```json
+{
+  "manipulation_id": "manip-uuid-string",
+  "status": "PLACING|SUCCESS|FAILURE",
+  "success": true,
+  "failure_reason": null,
+  "released_object_id": "obj-uuid-string",
+  "completion_time": "2025-01-15T10:41:15Z"
+}
+```
+
+## 7. Execution Context API
+
+### GET /execution-context/{context_id}
+Get the current state of an execution context.
+
+**Response**:
+```json
+{
+  "execution_context": {
+    "id": "exec-uuid-string",
+    "plan_id": "plan-uuid-string",
+    "start_time": "2025-01-15T10:35:00Z",
+    "current_step_index": 2,
+    "completed_steps": [0, 1],
+    "failed_steps": [],
+    "intermediate_results": {
+      "kitchen_location_found": true,
+      "red_cup_detected": "obj-uuid-string"
+    },
+    "adaptation_history": [],
+    "current_status": "RUNNING",
+    "progress": 45.2,
+    "estimated_time_remaining": 80,
+    "safety_violations": [],
+    "replan_requests": []
+  }
+}
+```
+
+### PUT /execution-context/{context_id}/pause
+Pause execution of an action plan.
+
+**Response**:
+```json
+{
+  "execution_context_id": "exec-uuid-string",
+  "status": "PAUSED",
+  "pause_time": "2025-01-15T10:42:10Z"
+}
+```
+
+### PUT /execution-context/{context_id}/resume
+Resume execution of a paused action plan.
+
+**Response**:
+```json
+{
+  "execution_context_id": "exec-uuid-string",
+  "status": "RUNNING",
+  "resume_time": "2025-01-15T10:43:05Z"
+}
+```
+
+### DELETE /execution-context/{context_id}/cancel
+Cancel execution of an action plan.
+
+**Response**:
+```json
+{
+  "execution_context_id": "exec-uuid-string",
+  "status": "CANCELLED",
+  "cancel_time": "2025-01-15T10:44:20Z",
+  "cleanup_status": "STARTED"
+}
+```

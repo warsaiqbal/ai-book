@@ -1,0 +1,92 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.log
+*.pot
+*.pyc
+*.pyo
+*.so
+.cover
+.pytest_cache/
+.hypothesis/
+.DS_Store
+Thumbs.db
+
+# Virtual Environment
+.venv
+venv/
+env/
+ENV/
+
+# ROS2
+build/
+install/
+log/
+.development/
+*.lock
+.config/
+.vscode/
+
+# Isaac Sim
+isaac-sim/
+/opt/isaac-sim/
+
+# Isaac ROS
+isaac_ros_common/
+isaac_ros_dev/
+isaac_ros_navigation/
+isaac_ros_perception/
+
+# Navigation2
+navigation2/
+nav2_*/
+
+# C++/Build
+*.o
+*.a
+*.so
+*.dll
+*.dylib
+*.exe
+build/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.manifest
+Makefile
+ninja_log.txt
+compile_commands.json
+
+# Data files
+*.bin
+*.dat
+*.raw
+*.bag
+*.tfevents*
+
+# Documentation
+docs/_build/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+node_modules

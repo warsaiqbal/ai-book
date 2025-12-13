@@ -1,0 +1,15 @@
+# Goal
+# geometry_msgs/PoseStamped target_pose  # Target pose for navigation (using placeholder)
+string target_pose_data                # Target pose data as string (placeholder)
+float64[] tolerance                    # Position and orientation tolerances
+---
+# Result
+bool success                          # True if navigation completed successfully
+string message                        # Completion message
+builtin_interfaces/Time completion_time  # Time when navigation completed
+float64[] final_position             # Final position achieved
+---
+# Feedback
+string current_state                 # Current navigation state
+float64[] distance_remaining         # Distance remaining to target
+builtin_interfaces/Time estimated_time_remaining  # Estimated time to completion

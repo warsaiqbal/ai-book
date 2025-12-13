@@ -1,0 +1,276 @@
+# Robotics Services API Contract
+
+## Navigation Service
+
+### POST /navigation/plan-path
+Plan a path from the current position to a target.
+
+**Request**:
+```json
+{
+  "start_pose": {
+    "position": {"x": 0.0, "y": 0.0, "z": 0.0},
+    "orientation": {"x": 0.0, "y": 0.0, "z": 0.0, "w": 1.0}
+  },
+  "target_pose": {
+    "position": {"x": 5.0, "y": 3.0, "z": 0.0},
+    "orientation": {"x": 0.0, "y": 0.0, "z": 0.0, "w": 1.0}
+  },
+  "map_id": "env_map_001",
+  "options": {
+    "planner": "global_planner",
+    "allow_dynamic_obstacles": true,
+    "cost_factor": 1.0
+  }
+}
+```
+
+**Response**:
+```json
+{
+  "path_id": "path_001",
+  "waypoints": [
+    {"x": 1.0, "y": 0.5, "z": 0.0},
+    {"x": 2.0, "y": 1.0, "z": 0.0},
+    {"x": 3.0, "y": 1.5, "z": 0.0},
+    {"x": 4.0, "y": 2.0, "z": 0.0},
+    {"x": 5.0, "y": 3.0, "z": 0.0}
+  ],
+  "estimated_duration": 180,
+  "path_length": 6.2
+}
+```
+
+### POST /navigation/follow-path
+Command the robot to follow a planned path.
+
+**Request**:
+```json
+{
+  "path_id": "path_001",
+  "options": {
+    "max_velocity": 0.5,
+    "replan_on_dynamic_obstacle": true,
+    "timeout_seconds": 300
+  }
+}
+```
+
+**Response**:
+```json
+{
+  "navigation_id": "nav_001",
+  "status": "executing",
+  "estimated_completion": "2025-01-15T10:40:00Z"
+}
+```
+
+## Perception Service
+
+### POST /perception/detect-objects
+Detect objects in the robot's field of view.
+
+**Request**:
+```json
+{
+  "camera_id": "front_camera",
+  "detection_classes": ["cup", "bottle", "person"],
+  "confidence_threshold": 0.7,
+  "options": {
+    "model": "yolov8n-seg.pt",
+    "return_masks": true
+  }
+}
+```
+
+**Response**:
+```json
+{
+  "detection_id": "det_001",
+  "objects": [
+    {
+      "id": "obj_001",
+      "class": "cup",
+      "confidence": 0.92,
+      "bbox": {
+        "x_min": 100,
+        "y_min": 150,
+        "x_max": 180,
+        "y_max": 220
+      },
+      "centroid": {"x": 140, "y": 185},
+      "pose_3d": {
+        "position": {"x": 0.8, "y": -0.3, "z": 0.9},
+        "orientation": {"x": 0.0, "y": 0.0, "z": 0.0, "w": 1.0}
+      }
+    }
+  ],
+  "processing_time": 0.15
+}
+```
+
+### POST /perception/track-object
+Track a specific object across frames.
+
+**Request**:
+```json
+{
+  "object_id": "obj_001",
+  "options": {
+    "max_tracking_time": 60,
+    "update_frequency": 10
+  }
+}
+```
+
+**Response**:
+```json
+{
+  "tracking_id": "track_001",
+  "status": "tracking"
+}
+```
+
+## Manipulation Service
+
+### POST /manipulation/grasp-object
+Grasp an object at a specified location.
+
+**Request**:
+```json
+{
+  "object_id": "obj_001",
+  "grasp_pose": {
+    "position": {"x": 0.85, "y": -0.25, "z": 0.85},
+    "orientation": {"x": 0.0, "y": 0.0, "z": 0.707, "w": 0.707}
+  },
+  "gripper": "right",
+  "options": {
+    "grasp_force": 20.0,
+    "approach_distance": 0.1
+  }
+}
+```
+
+**Response**:
+```json
+{
+  "manipulation_id": "manip_001",
+  "status": "executing",
+  "estimated_completion": "2025-01-15T10:32:00Z"
+}
+```
+
+### POST /manipulation/place-object
+Place an object at a specified location.
+
+**Request**:
+```json
+{
+  "placement_pose": {
+    "position": {"x": 1.2, "y": 0.5, "z": 0.85},
+    "orientation": {"x": 0.0, "y": 0.0, "z": 0.0, "w": 1.0}
+  },
+  "gripper": "right",
+  "options": {
+    "release_force": 5.0
+  }
+}
+```
+
+**Response**:
+```json
+{
+  "manipulation_id": "manip_002",
+  "status": "executing",
+  "estimated_completion": "2025-01-15T10:33:30Z"
+}
+```
+
+## ROS Bridge Service
+
+### POST /ros/publish-message
+Publish a message to a ROS topic.
+
+**Request**:
+```json
+{
+  "topic": "/cmd_vel",
+  "message_type": "geometry_msgs/Twist",
+  "message": {
+    "linear": {"x": 0.5, "y": 0.0, "z": 0.0},
+    "angular": {"x": 0.0, "y": 0.0, "z": 0.2}
+  }
+}
+```
+
+**Response**:
+```json
+{
+  "status": "published",
+  "timestamp": "2025-01-15T10:30:00Z"
+}
+```
+
+### POST /ros/call-service
+Call a ROS service.
+
+**Request**:
+```json
+{
+  "service": "/move_group/plan_kinematic_path",
+  "service_type": "moveit_msgs/GetCartesianPath",
+  "request": {
+    "start_state": {},
+    "group_name": "arm",
+    "link_name": "end_effector",
+    "waypoints": []
+  }
+}
+```
+
+**Response**:
+```json
+{
+  "response": {},
+  "status": "success"
+}
+```
+
+## Safety Monitoring Service
+
+### POST /safety/validate-action
+Validate an action for safety before execution.
+
+**Request**:
+```json
+{
+  "action": {
+    "type": "manipulation",
+    "parameters": {
+      "target_pose": {
+        "position": {"x": 0.85, "y": -0.25, "z": 0.85}
+      }
+    }
+  },
+  "robot_state": {
+    "pose": {
+      "position": {"x": 0.0, "y": 0.0, "z": 0.0}
+    },
+    "joint_states": []
+  }
+}
+```
+
+**Response**:
+```json
+{
+  "is_safe": true,
+  "risk_assessment": {
+    "collision_risk": "low",
+    "kinematic_feasibility": "high",
+    "stability_risk": "low"
+  },
+  "modifications_suggested": []
+}
+```

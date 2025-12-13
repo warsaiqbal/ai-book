@@ -1,0 +1,153 @@
+# API Contract: ROS2 Nervous System
+
+## Overview
+This document defines the message interfaces and service contracts for the ROS2-based nervous system for robot control.
+
+## Message Types
+
+### RobotCommand.msg
+```
+# Command sent from AI agents or remote interfaces to control the robot
+string command_type  # Type of command (move_to, grip, stop, etc.)
+float64[] target_positions  # Target joint positions (in radians or meters)
+float64[] target_velocities  # Target joint velocities (optional)
+float64[] target_effort     # Target joint effort (optional)
+float64 timeout             # Command timeout in seconds
+string[] joints             # Names of joints to command (optional)
+---
+# Response
+bool success                # True if command was accepted
+string message              # Status message
+float64 execution_time      # Time to execute the command (if applicable)
+```
+
+### RobotState.msg
+```
+# Current state of the robot reported by state publisher
+string robot_name          # Name of the robot
+float64[] joint_positions  # Current joint positions (in radians or meters)
+float64[] joint_velocities # Current joint velocities
+float64[] joint_effort     # Current joint efforts
+float64[] cartesian_pose   # End-effector pose [x, y, z, rx, ry, rz]
+string[] joint_names       # Names of joints in the arrays
+builtin_interfaces/Time timestamp  # Timestamp of the state measurement
+```
+
+### SensorData.msg
+```
+# Sensor data from robot sensors
+string sensor_type         # Type of sensor (imu, camera, lidar, etc.)
+string sensor_name         # Name of the specific sensor
+float64[] data             # Sensor data values
+builtin_interfaces/Time timestamp  # Timestamp of the measurement
+float64 frame_rate         # Rate at which sensor is publishing data
+string frame_id            # TF frame of the sensor
+```
+
+### DiagnosticStatus.msg
+```
+# Diagnostic information from robot subsystems
+int8 level                 # Diagnostic level (0=OK, 1=Warn, 2=Error, 3=Stale)
+string name                # Name of the subsystem
+string message             # Human-readable message
+string hardware_id         # Hardware ID of the subsystem
+DiagnosticValue[] values   # Additional diagnostic values
+```
+
+## Service Definitions
+
+### GetRobotState.srv
+```
+# Request
+string robot_name          # Name of the robot to get state for
+
+# Response
+bool success               # True if request was successful
+string message             # Status message
+RobotState state           # Current robot state
+```
+
+### ExecuteTrajectory.srv
+```
+# Request
+string robot_name          # Name of the robot to execute trajectory
+JointTrajectory trajectory # Joint trajectory to execute
+bool blocking              # Whether to block until completion
+
+# Response
+bool success               # True if trajectory execution started
+string message             # Status message
+builtin_interfaces/Time execution_start_time  # Time when execution started
+builtin_interfaces/Time estimated_completion_time  # Estimated time of completion
+```
+
+### SetControlMode.srv
+```
+# Request
+string robot_name          # Name of the robot to change control mode for
+string control_mode        # New control mode (position, velocity, effort, impedance)
+
+# Response
+bool success               # True if control mode was changed
+string message             # Status message
+string previous_mode       # Previous control mode
+```
+
+## Action Definitions
+
+### NavigateToPose.action
+```
+# Goal
+geometry_msgs/PoseStamped target_pose  # Target pose for navigation
+float64[] tolerance                    # Position and orientation tolerances
+
+# Result
+bool success                          # True if navigation completed successfully
+string message                        # Completion message
+builtin_interfaces/Time completion_time  # Time when navigation completed
+float64[] final_position             # Final position achieved
+
+# Feedback
+string current_state                 # Current navigation state
+float64[] distance_remaining         # Distance remaining to target
+builtin_interfaces/Time estimated_time_remaining  # Estimated time to completion
+```
+
+## Topic Names and Message Types
+
+### Published Topics
+- `/robot_state` - `RobotState` (current robot state)
+- `/sensor_data` - `SensorData` (sensor information from all sensors)
+- `/diagnostics` - `DiagnosticStatus` (system health information)
+- `/rosout` - `rcl_interfaces/Log` (system log messages)
+
+### Subscribed Topics
+- `/robot_command` - `RobotCommand` (commands to control the robot)
+- `/motion_plan` - `trajectory_msgs/JointTrajectory` (motion plans to execute)
+- `/ai_commands` - `std_msgs/String` (high-level commands from AI systems)
+
+### Services
+- `/get_robot_state` - `GetRobotState` (get current robot state)
+- `/execute_trajectory` - `ExecuteTrajectory` (execute a planned trajectory)
+- `/set_control_mode` - `SetControlMode` (change robot control mode)
+
+## Quality of Service Settings
+
+### Critical Control Topics
+- Reliability: Reliable
+- Durability: Volatile
+- Deadline: 100ms
+- Lifespan: 1s
+- History: Keep last 1
+
+### Sensor Data Topics
+- Reliability: Best effort (for high-frequency sensors)
+- Durability: Volatile
+- History: Keep last 10
+- Rate: Variable based on sensor frequency
+
+### Diagnostic Topics
+- Reliability: Best effort
+- Durability: Transient local
+- History: Keep all
+- Rate: 1Hz

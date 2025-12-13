@@ -1,0 +1,157 @@
+{
+  "manifest": {
+    "title": "Physical AI & Humanoid Robotics Course Textbook",
+    "version": "1.0",
+    "lastUpdated": "2025-12-12",
+    "description": "Mapping of Docusaurus textbook sections to original PDF document sections"
+  },
+  "mappings": [
+    {
+      "docusaurusSection": "Introduction & Course Overview",
+      "docusaurusPath": "/docs/intro",
+      "originalPdfSection": "1.0",
+      "originalPdfPages": "1-5",
+      "learningObjectives": [
+        "Understand the scope of Physical AI",
+        "Identify key components of humanoid robotics",
+        "Describe the course structure and expectations"
+      ]
+    },
+    {
+      "docusaurusSection": "Module 1 — ROS2: Robotic Nervous System",
+      "docusaurusPath": "/docs/module1-ros2",
+      "originalPdfSection": "2.1",
+      "originalPdfPages": "6-18",
+      "learningObjectives": [
+        "Explain ROS2 architecture and concepts",
+        "Implement basic ROS2 nodes and communication",
+        "Design robot systems using ROS2 patterns"
+      ]
+    },
+    {
+      "docusaurusSection": "Module 2 — Gazebo & Unity: The Digital Twin",
+      "docusaurusPath": "/docs/module2-digital-twin",
+      "originalPdfSection": "2.2",
+      "originalPdfPages": "19-32",
+      "learningObjectives": [
+        "Create simulation environments for robotics",
+        "Implement physics-based robot simulation",
+        "Validate robot behavior in simulation before real-world deployment"
+      ]
+    },
+    {
+      "docusaurusSection": "Module 3 — NVIDIA Isaac: AI-Robot Brain",
+      "docusaurusPath": "/docs/module3-isaac",
+      "originalPdfSection": "2.3",
+      "originalPdfPages": "33-45",
+      "learningObjectives": [
+        "Deploy AI models on robotic platforms",
+        "Implement perception and decision-making systems",
+        "Optimize AI inference for robotic applications"
+      ]
+    },
+    {
+      "docusaurusSection": "Module 4 — Vision-Language-Action (VLA)",
+      "docusaurusPath": "/docs/module4-vla",
+      "originalPdfSection": "2.4",
+      "originalPdfPages": "46-58",
+      "learningObjectives": [
+        "Design VLA systems for robotic applications",
+        "Implement multimodal AI for robotics",
+        "Create natural interfaces for human-robot interaction"
+      ]
+    },
+    {
+      "docusaurusSection": "Weekly Breakdown (Weeks 1–13)",
+      "docusaurusPath": "/docs/weekly-breakdown",
+      "originalPdfSection": "3.0",
+      "originalPdfPages": "59-65",
+      "learningObjectives": [
+        "Follow structured learning path through 13 weeks",
+        "Implement knowledge through weekly projects",
+        "Connect theoretical concepts to practical applications"
+      ]
+    },
+    {
+      "docusaurusSection": "Assessments & Capstone",
+      "docusaurusPath": "/docs/assessments-capstone",
+      "originalPdfSection": "4.0",
+      "originalPdfPages": "66-72",
+      "learningObjectives": [
+        "Apply all learned concepts in comprehensive project",
+        "Demonstrate competency in humanoid robotics",
+        "Evaluate learning outcomes through structured assessments"
+      ]
+    },
+    {
+      "docusaurusSection": "Hardware Requirements",
+      "docusaurusPath": "/docs/hardware-requirements",
+      "originalPdfSection": "5.1",
+      "originalPdfPages": "73-79",
+      "learningObjectives": [
+        "Select appropriate hardware for robotic applications",
+        "Understand trade-offs in robotic hardware selection",
+        "Design robot platforms with appropriate specifications"
+      ]
+    },
+    {
+      "docusaurusSection": "Robot Lab Options",
+      "docusaurusPath": "/docs/robot-lab-options",
+      "originalPdfSection": "5.2",
+      "originalPdfPages": "80-86",
+      "learningObjectives": [
+        "Plan robotics laboratory infrastructure",
+        "Understand requirements for different lab configurations",
+        "Implement safe and effective robot development environments"
+      ]
+    },
+    {
+      "docusaurusSection": "Cloud vs On-Prem Considerations",
+      "docusaurusPath": "/docs/cloud-vs-onprem",
+      "originalPdfSection": "6.0",
+      "originalPdfPages": "87-93",
+      "learningObjectives": [
+        "Evaluate deployment options for robotic systems",
+        "Understand trade-offs between cloud and on-premises solutions",
+        "Design appropriate infrastructure for robotic applications"
+      ]
+    },
+    {
+      "docusaurusSection": "Deployment & Integrations",
+      "docusaurusPath": "/docs/deployment-integrations",
+      "originalPdfSection": "7.0",
+      "originalPdfPages": "94-100",
+      "learningObjectives": [
+        "Deploy robotic systems in real-world environments",
+        "Integrate robots with existing systems and workflows",
+        "Ensure reliable and maintainable robotic deployments"
+      ]
+    },
+    {
+      "docusaurusSection": "Appendix",
+      "docusaurusPath": "/docs/appendix",
+      "originalPdfSection": "A-Z",
+      "originalPdfPages": "101-110",
+      "learningObjectives": [
+        "Reference key concepts, terminology, and resources",
+        "Access implementation templates and code examples",
+        "Continue learning with recommended resources"
+      ]
+    }
+  ],
+  "metadata": {
+    "courseCode": "CS498PHR",
+    "credits": 4,
+    "prerequisites": [
+      "CS201 (Introduction to Programming)",
+      "CS301 (Data Structures)",
+      "CS340 (Artificial Intelligence)"
+    ],
+    "targetAudience": [
+      "Senior undergraduate students",
+      "Graduate students",
+      "Robotics professionals"
+    ],
+    "estimatedCompletionTime": "150 hours"
+  }
+}

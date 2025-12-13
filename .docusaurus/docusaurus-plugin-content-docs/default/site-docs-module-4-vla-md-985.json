@@ -1,0 +1,61 @@
+{
+  "id": "module4-vla",
+  "title": "Module 4 — Vision-Language-Action (VLA)",
+  "description": "Integration of visual perception, language, and robotic action",
+  "source": "@site/docs/module4-vla.md",
+  "sourceDirName": ".",
+  "slug": "/module4-vla",
+  "permalink": "/qwen/docs/module4-vla",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/module4-vla.md",
+  "tags": [
+    {
+      "inline": true,
+      "label": "vla",
+      "permalink": "/qwen/docs/tags/vla"
+    },
+    {
+      "inline": true,
+      "label": "vision",
+      "permalink": "/qwen/docs/tags/vision"
+    },
+    {
+      "inline": true,
+      "label": "language",
+      "permalink": "/qwen/docs/tags/language"
+    },
+    {
+      "inline": true,
+      "label": "action",
+      "permalink": "/qwen/docs/tags/action"
+    }
+  ],
+  "version": "current",
+  "sidebarPosition": 5,
+  "frontMatter": {
+    "title": "Module 4 — Vision-Language-Action (VLA)",
+    "description": "Integration of visual perception, language, and robotic action",
+    "sidebar_position": 5,
+    "learning_outcomes": [
+      "Implement Vision-Language-Action models",
+      "Integrate multimodal AI systems"
+    ],
+    "tags": [
+      "vla",
+      "vision",
+      "language",
+      "action"
+    ],
+    "source_of_truth": "Official course document"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Module 3 — NVIDIA Isaac: AI-Robot Brain",
+    "permalink": "/qwen/docs/module3-isaac"
+  },
+  "next": {
+    "title": "Weekly Breakdown (Weeks 1–13)",
+    "permalink": "/qwen/docs/weekly-breakdown"
+  }
+}

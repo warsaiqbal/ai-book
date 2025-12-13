@@ -1,0 +1,88 @@
+{
+  "docusaurus-plugin-content-docs": {
+    "default": {
+      "path": "/qwen/docs",
+      "versions": [
+        {
+          "name": "current",
+          "label": "Next",
+          "isLast": true,
+          "path": "/qwen/docs",
+          "mainDocId": "intro",
+          "docs": [
+            {
+              "id": "appendix",
+              "path": "/qwen/docs/appendix",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "assessments-capstone",
+              "path": "/qwen/docs/assessments-capstone",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "cloud-vs-onprem",
+              "path": "/qwen/docs/cloud-vs-onprem",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "deployment-integrations",
+              "path": "/qwen/docs/deployment-integrations",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "hardware-requirements",
+              "path": "/qwen/docs/hardware-requirements",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "intro",
+              "path": "/qwen/docs/intro",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "module1-ros2",
+              "path": "/qwen/docs/module1-ros2",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "module2-digital-twin",
+              "path": "/qwen/docs/module2-digital-twin",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "module3-isaac",
+              "path": "/qwen/docs/module3-isaac",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "module4-vla",
+              "path": "/qwen/docs/module4-vla",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "robot-lab-options",
+              "path": "/qwen/docs/robot-lab-options",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "weekly-breakdown",
+              "path": "/qwen/docs/weekly-breakdown",
+              "sidebar": "tutorialSidebar"
+            }
+          ],
+          "draftIds": [],
+          "sidebars": {
+            "tutorialSidebar": {
+              "link": {
+                "path": "/qwen/docs/intro",
+                "label": "intro"
+              }
+            }
+          }
+        }
+      ],
+      "breadcrumbs": true
+    }
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "id": "module1-ros2",
+  "title": "Module 1 — ROS2: Robotic Nervous System",
+  "description": "Introduction to Robot Operating System 2",
+  "source": "@site/docs/module1-ros2.md",
+  "sourceDirName": ".",
+  "slug": "/module1-ros2",
+  "permalink": "/qwen/docs/module1-ros2",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/module1-ros2.md",
+  "tags": [
+    {
+      "inline": true,
+      "label": "ros2",
+      "permalink": "/qwen/docs/tags/ros-2"
+    }
+  ],
+  "version": "current",
+  "sidebarPosition": 2,
+  "frontMatter": {
+    "title": "Module 1 — ROS2: Robotic Nervous System",
+    "description": "Introduction to Robot Operating System 2",
+    "sidebar_position": 2,
+    "learning_outcomes": [
+      "Understand ROS2 architecture and concepts",
+      "Implement basic ROS2 nodes, topics, and services"
+    ],
+    "tags": [
+      "ros2"
+    ],
+    "source_of_truth": "Official course document"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Introduction & Course Overview",
+    "permalink": "/qwen/docs/intro"
+  },
+  "next": {
+    "title": "Module 2 — Gazebo & Unity: The Digital Twin",
+    "permalink": "/qwen/docs/module2-digital-twin"
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "id": "module2-digital-twin",
+  "title": "Module 2 — Gazebo & Unity: The Digital Twin",
+  "description": "Simulation environments for robot development",
+  "source": "@site/docs/module2-digital-twin.md",
+  "sourceDirName": ".",
+  "slug": "/module2-digital-twin",
+  "permalink": "/qwen/docs/module2-digital-twin",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/module2-digital-twin.md",
+  "tags": [
+    {
+      "inline": true,
+      "label": "gazebo",
+      "permalink": "/qwen/docs/tags/gazebo"
+    },
+    {
+      "inline": true,
+      "label": "unity",
+      "permalink": "/qwen/docs/tags/unity"
+    }
+  ],
+  "version": "current",
+  "sidebarPosition": 3,
+  "frontMatter": {
+    "title": "Module 2 — Gazebo & Unity: The Digital Twin",
+    "description": "Simulation environments for robot development",
+    "sidebar_position": 3,
+    "learning_outcomes": [
+      "Create robot simulations using Gazebo",
+      "Develop digital twins with Unity"
+    ],
+    "tags": [
+      "gazebo",
+      "unity"
+    ],
+    "source_of_truth": "Official course document"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Module 1 — ROS2: Robotic Nervous System",
+    "permalink": "/qwen/docs/module1-ros2"
+  },
+  "next": {
+    "title": "Module 3 — NVIDIA Isaac: AI-Robot Brain",
+    "permalink": "/qwen/docs/module3-isaac"
+  }
+}

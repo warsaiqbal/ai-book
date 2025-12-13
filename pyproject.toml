@@ -1,0 +1,85 @@
+[build-system]
+requires = ["setuptools>=45", "wheel", "setuptools_scm[toml]>=6.2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vla-robotics"
+version = "0.1.0"
+description = "Vision-Language-Action system for robotics applications"
+readme = "README.md"
+requires-python = ">=3.11"
+license = {text = "MIT"}
+authors = [
+    {name = "VLA Robotics Team", email = "vla-robotics@example.com"}
+]
+dependencies = [
+    "torch>=2.0.0",
+    "torchvision>=0.15.0",
+    "torchaudio>=2.0.0",
+    "numpy>=1.21.0",
+    "opencv-python>=4.8.0",
+    "Pillow>=9.0.0",
+    "requests>=2.28.0",
+    "pydantic>=1.10.0",
+    "fastapi>=0.95.0",
+    "uvicorn>=0.21.0",
+    "openai-whisper>=20230314",
+    "librosa>=0.10.0",
+    "soundfile>=0.11.0",
+    "pyaudio>=0.2.11",
+    "openai>=1.0.0",
+    "langchain>=0.0.200",
+    "transformers>=4.30.0",
+    "tokenizers>=0.13.0",
+    "ultralytics>=8.0.0",
+    "scipy>=1.10.0",
+    "scikit-image>=0.20.0",
+    "pytest>=7.2.0",
+    "pytest-asyncio>=0.21.0",
+    "pytest-cov>=4.0.0",
+    "pyyaml>=6.0",
+    "python-dotenv>=1.0.0",
+    "tqdm>=4.65.0",
+    "click>=8.1.0",
+    "aiofiles>=23.0.0",
+    "asyncio-mqtt>=0.14.0",
+    "websockets>=11.0.0"
+]
+
+[project.optional-dependencies]
+dev = [
+    "black>=23.0.0",
+    "flake8>=6.0.0",
+    "mypy>=1.0.0",
+    "isort>=5.0.0",
+    "pytest>=7.2.0",
+    "pytest-cov>=4.0.0"
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-dir]
+"" = "src"
+
+[project.scripts]
+vla-system = "src.vla.run_vla_system:main"
+
+[tool.black]
+line-length = 88
+target-version = ['py311']
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+  # directories
+  \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | build
+  | dist
+  | node_modules
+)/
+'''

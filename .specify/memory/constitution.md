@@ -1,55 +1,43 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!-- 
+Sync Impact Report:
+Version change: N/A → 1.0.0
+List of modified principles: N/A (New constitution for Physical AI & Humanoid Robotics Course)
+Added sections: All sections are new as this is an initial constitution for the specific course
+Removed sections: N/A
+Templates requiring updates: N/A (✅ updated / ⚠ pending) - No template changes required as this is a new constitution for a specific project
+Follow-up TODOs: None - all placeholders have been addressed
+-->
+# Physical AI & Humanoid Robotics Course Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### Source of Truth Fidelity
+All content must follow the official course document Hackathon I: Physical AI & Humanoid Robotics Textbook exactly (structure, outcomes, weekly schedule, modules, hardware, labs, capstone).
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### Multi-Platform Documentation
+Generate a Docusaurus-based, AI-native textbook mirroring the official document. Include clear explanations, minimal but effective code snippets, and tooling instructions.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### Structured Content Delivery
+Content must follow the 12 required sections in order: Introduction & Course Overview, Module 1-4 (covering ROS2, Digital Twin, AI-Robot Brain, VLA), Weekly Breakdown (Weeks 1-13), Assessments & Capstone, Hardware Requirements, Robot Lab Options, Cloud vs On-Prem Notes, Deployment & Integrations, and Appendix.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### Preservation of Official Information
+Preserve structure, topics, learning outcomes, weekly items, and hardware specs exactly as in the source document. Recreate tables and numbers exactly. Paraphrase only for clarity, never change meaning.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### Integrated AI Tools
+Provide Spec-Kit Plus + Agent examples for chapter generation and assessments. Include optional Better-Auth signup → personalized examples.
 
-### [PRINCIPLE_6_NAME]
+### Advanced RAG Implementation
+Use Qdrant + Neon Postgres + FastAPI for RAG chatbot. Support 'answer from highlighted text only' functionality. Include architecture, setup steps, and minimal API code examples.
 
+## Technology Stack Requirements
 
-[PRINCIPLE__DESCRIPTION]
+Use Docusaurus for documentation platform. Implement Qdrant + Neon Postgres + FastAPI for RAG chatbot. Support integration with Spec-Kit Plus and agents. Include Better-Auth for optional personalized experiences.
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+## Development Workflow
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
-
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
-
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+Content creation follows the 12 required sections in order. Each chapter should include frontmatter with title, description, sidebar position, learning outcomes, tags, and source of truth. Weekly breakdowns must align with official schedule.
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
+All content must verify compliance with source document fidelity. Any deviation from official course document must be justified and approved. Content creators must validate accuracy against official source materials
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
-
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Version**: 1.0.0 | **Ratified**: 2025-12-11 | **Last Amended**: 2025-12-11

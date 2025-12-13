@@ -1,0 +1,28 @@
+{
+  "id": "deployment-integrations",
+  "title": "Deployment & Integrations",
+  "description": "Overview of Deployment Strategies",
+  "source": "@site/docs/deployment-integrations.md",
+  "sourceDirName": ".",
+  "slug": "/deployment-integrations",
+  "permalink": "/qwen/docs/deployment-integrations",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/deployment-integrations.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 11,
+  "frontMatter": {
+    "title": "Deployment & Integrations",
+    "sidebar_position": 11
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Cloud vs On-Prem Considerations",
+    "permalink": "/qwen/docs/cloud-vs-onprem"
+  },
+  "next": {
+    "title": "Appendix",
+    "permalink": "/qwen/docs/appendix"
+  }
+}

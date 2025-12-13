@@ -1,0 +1,43 @@
+# VLA System Configuration
+
+# Voice Processing Configuration
+VOICE:
+  SAMPLE_RATE: 16000
+  CHUNK_SIZE: 1024
+  WHISPER_MODEL: "large-v2"  # Options: tiny, base, small, medium, large-v2
+  AUDIO_DEVICE_INDEX: 0  # Index of the microphone device to use
+
+# LLM Configuration
+LLM:
+  MODEL: "gpt-4-turbo"  # Or specify another model
+  MAX_TOKENS: 1000
+  TEMPERATURE: 0.3
+  TIMEOUT_SECONDS: 30
+
+# Navigation Configuration
+NAVIGATION:
+  MAX_LINEAR_VELOCITY: 0.5  # m/s
+  MAX_ANGULAR_VELOCITY: 0.5  # rad/s
+  GOAL_TOLERANCE: 0.1  # m
+  ANGULAR_TOLERANCE: 0.1  # rad
+
+# Perception Configuration
+PERCEPTION:
+  CONFIDENCE_THRESHOLD: 0.7
+  DETECTION_CLASSES: ["cup", "bottle", "person", "chair", "table"]
+  MAX_DETECTION_DISTANCE: 3.0  # meters
+
+# Manipulation Configuration
+MANIPULATION:
+  GRIPPER_OPEN_POSITION: 1.0
+  GRIPPER_CLOSE_POSITION: 0.0
+  MAX_GRIPPER_FORCE: 20.0  # Newtons
+
+# System Configuration
+SYSTEM:
+  SIMULATION_MODE: true
+  DEBUG_MODE: false
+  ROS_DOMAIN_ID: 1
+  DEFAULT_ROBOT_MODEL: "humanoid_a"
+  API_HOST: "localhost"
+  API_PORT: 8000

@@ -1,0 +1,28 @@
+{
+  "id": "hardware-requirements",
+  "title": "Hardware Requirements",
+  "description": "Processing Power Requirements",
+  "source": "@site/docs/hardware-requirements.md",
+  "sourceDirName": ".",
+  "slug": "/hardware-requirements",
+  "permalink": "/qwen/docs/hardware-requirements",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/hardware-requirements.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 8,
+  "frontMatter": {
+    "title": "Hardware Requirements",
+    "sidebar_position": 8
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Assessments & Capstone",
+    "permalink": "/qwen/docs/assessments-capstone"
+  },
+  "next": {
+    "title": "Robot Lab Options",
+    "permalink": "/qwen/docs/robot-lab-options"
+  }
+}
