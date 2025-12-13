@@ -11,7 +11,7 @@ const config = {
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
-  url: 'https://warsaiqbal.github.io/physical-ai-humanoid-robotics-textbook/',
+  url: 'https://github.com/warsaiqbal/physical-ai-textbook.git',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
