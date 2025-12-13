@@ -5,7 +5,7 @@
   "source": "@site/docs/module4-vla.md",
   "sourceDirName": ".",
   "slug": "/module4-vla",
-  "permalink": "/qwen/docs/module4-vla",
+  "permalink": "/docs/module4-vla",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/module4-vla.md",
@@ -13,22 +13,22 @@
     {
       "inline": true,
       "label": "vla",
-      "permalink": "/qwen/docs/tags/vla"
+      "permalink": "/docs/tags/vla"
     },
     {
       "inline": true,
       "label": "vision",
-      "permalink": "/qwen/docs/tags/vision"
+      "permalink": "/docs/tags/vision"
     },
     {
       "inline": true,
       "label": "language",
-      "permalink": "/qwen/docs/tags/language"
+      "permalink": "/docs/tags/language"
     },
     {
       "inline": true,
       "label": "action",
-      "permalink": "/qwen/docs/tags/action"
+      "permalink": "/docs/tags/action"
     }
   ],
   "version": "current",
@@ -52,10 +52,10 @@
   "sidebar": "tutorialSidebar",
   "previous": {
     "title": "Module 3 — NVIDIA Isaac: AI-Robot Brain",
-    "permalink": "/qwen/docs/module3-isaac"
+    "permalink": "/docs/module3-isaac"
   },
   "next": {
     "title": "Weekly Breakdown (Weeks 1–13)",
-    "permalink": "/qwen/docs/weekly-breakdown"
+    "permalink": "/docs/weekly-breakdown"
   }
 }

@@ -5,7 +5,7 @@
   "source": "@site/docs/module2-digital-twin.md",
   "sourceDirName": ".",
   "slug": "/module2-digital-twin",
-  "permalink": "/qwen/docs/module2-digital-twin",
+  "permalink": "/docs/module2-digital-twin",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/module2-digital-twin.md",
@@ -13,12 +13,12 @@
     {
       "inline": true,
       "label": "gazebo",
-      "permalink": "/qwen/docs/tags/gazebo"
+      "permalink": "/docs/tags/gazebo"
     },
     {
       "inline": true,
       "label": "unity",
-      "permalink": "/qwen/docs/tags/unity"
+      "permalink": "/docs/tags/unity"
     }
   ],
   "version": "current",
@@ -40,10 +40,10 @@
   "sidebar": "tutorialSidebar",
   "previous": {
     "title": "Module 1 — ROS2: Robotic Nervous System",
-    "permalink": "/qwen/docs/module1-ros2"
+    "permalink": "/docs/module1-ros2"
   },
   "next": {
     "title": "Module 3 — NVIDIA Isaac: AI-Robot Brain",
-    "permalink": "/qwen/docs/module3-isaac"
+    "permalink": "/docs/module3-isaac"
   }
 }

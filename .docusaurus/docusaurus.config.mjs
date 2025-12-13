@@ -8,7 +8,7 @@ export default {
   "tagline": "A comprehensive textbook on Physical AI and Humanoid Robotics",
   "favicon": "img/favicon.ico",
   "url": "https://warsaiqbal.github.io",
-  "baseUrl": "/qwen/",
+  "baseUrl": "/",
   "organizationName": "warsaiqbal",
   "projectName": "qwen",
   "onBrokenLinks": "throw",

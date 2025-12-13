@@ -5,7 +5,7 @@
   "source": "@site/docs/cloud-vs-onprem.md",
   "sourceDirName": ".",
   "slug": "/cloud-vs-onprem",
-  "permalink": "/qwen/docs/cloud-vs-onprem",
+  "permalink": "/docs/cloud-vs-onprem",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/cloud-vs-onprem.md",
@@ -19,10 +19,10 @@
   "sidebar": "tutorialSidebar",
   "previous": {
     "title": "Robot Lab Options",
-    "permalink": "/qwen/docs/robot-lab-options"
+    "permalink": "/docs/robot-lab-options"
   },
   "next": {
     "title": "Deployment & Integrations",
-    "permalink": "/qwen/docs/deployment-integrations"
+    "permalink": "/docs/deployment-integrations"
   }
 }

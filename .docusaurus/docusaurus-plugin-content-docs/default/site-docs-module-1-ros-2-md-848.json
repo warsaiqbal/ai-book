@@ -5,7 +5,7 @@
   "source": "@site/docs/module1-ros2.md",
   "sourceDirName": ".",
   "slug": "/module1-ros2",
-  "permalink": "/qwen/docs/module1-ros2",
+  "permalink": "/docs/module1-ros2",
   "draft": false,
   "unlisted": false,
   "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/module1-ros2.md",
@@ -13,7 +13,7 @@
     {
       "inline": true,
       "label": "ros2",
-      "permalink": "/qwen/docs/tags/ros-2"
+      "permalink": "/docs/tags/ros-2"
     }
   ],
   "version": "current",
@@ -34,10 +34,10 @@
   "sidebar": "tutorialSidebar",
   "previous": {
     "title": "Introduction & Course Overview",
-    "permalink": "/qwen/docs/intro"
+    "permalink": "/docs/intro"
   },
   "next": {
     "title": "Module 2 — Gazebo & Unity: The Digital Twin",
-    "permalink": "/qwen/docs/module2-digital-twin"
+    "permalink": "/docs/module2-digital-twin"
   }
 }

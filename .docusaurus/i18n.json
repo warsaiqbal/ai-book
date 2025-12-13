@@ -15,7 +15,7 @@
       "path": "en",
       "translate": false,
       "url": "https://warsaiqbal.github.io",
-      "baseUrl": "/qwen/"
+      "baseUrl": "/"
     },
     "ur": {
       "label": "اردو",
@@ -25,7 +25,7 @@
       "path": "ur",
       "translate": true,
       "url": "https://warsaiqbal.github.io",
-      "baseUrl": "/qwen/ur/"
+      "baseUrl": "/ur/"
     }
   }
 }

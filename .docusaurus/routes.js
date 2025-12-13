@@ -3,176 +3,141 @@ import ComponentCreator from '@docusaurus/ComponentCreator';
 
 export default [
   {
-    path: '/qwen/__docusaurus/debug',
-    component: ComponentCreator('/qwen/__docusaurus/debug', 'cfe'),
+    path: '/login',
+    component: ComponentCreator('/login', 'a8c'),
     exact: true
   },
   {
-    path: '/qwen/__docusaurus/debug/config',
-    component: ComponentCreator('/qwen/__docusaurus/debug/config', '055'),
-    exact: true
-  },
-  {
-    path: '/qwen/__docusaurus/debug/content',
-    component: ComponentCreator('/qwen/__docusaurus/debug/content', '212'),
-    exact: true
-  },
-  {
-    path: '/qwen/__docusaurus/debug/globalData',
-    component: ComponentCreator('/qwen/__docusaurus/debug/globalData', '5ae'),
-    exact: true
-  },
-  {
-    path: '/qwen/__docusaurus/debug/metadata',
-    component: ComponentCreator('/qwen/__docusaurus/debug/metadata', 'fe2'),
-    exact: true
-  },
-  {
-    path: '/qwen/__docusaurus/debug/registry',
-    component: ComponentCreator('/qwen/__docusaurus/debug/registry', '3af'),
-    exact: true
-  },
-  {
-    path: '/qwen/__docusaurus/debug/routes',
-    component: ComponentCreator('/qwen/__docusaurus/debug/routes', 'db5'),
-    exact: true
-  },
-  {
-    path: '/qwen/login',
-    component: ComponentCreator('/qwen/login', 'fbd'),
-    exact: true
-  },
-  {
-    path: '/qwen/docs',
-    component: ComponentCreator('/qwen/docs', '686'),
+    path: '/docs',
+    component: ComponentCreator('/docs', '67b'),
     routes: [
       {
-        path: '/qwen/docs',
-        component: ComponentCreator('/qwen/docs', 'f24'),
+        path: '/docs',
+        component: ComponentCreator('/docs', '8ee'),
         routes: [
           {
-            path: '/qwen/docs/tags',
-            component: ComponentCreator('/qwen/docs/tags', '608'),
+            path: '/docs/tags',
+            component: ComponentCreator('/docs/tags', 'fce'),
             exact: true
           },
           {
-            path: '/qwen/docs/tags/action',
-            component: ComponentCreator('/qwen/docs/tags/action', '839'),
+            path: '/docs/tags/action',
+            component: ComponentCreator('/docs/tags/action', '29f'),
             exact: true
           },
           {
-            path: '/qwen/docs/tags/ai',
-            component: ComponentCreator('/qwen/docs/tags/ai', '3ef'),
+            path: '/docs/tags/ai',
+            component: ComponentCreator('/docs/tags/ai', 'bd3'),
             exact: true
           },
           {
-            path: '/qwen/docs/tags/gazebo',
-            component: ComponentCreator('/qwen/docs/tags/gazebo', 'f1c'),
+            path: '/docs/tags/gazebo',
+            component: ComponentCreator('/docs/tags/gazebo', 'a4c'),
             exact: true
           },
           {
-            path: '/qwen/docs/tags/isaac',
-            component: ComponentCreator('/qwen/docs/tags/isaac', 'c3e'),
+            path: '/docs/tags/isaac',
+            component: ComponentCreator('/docs/tags/isaac', '56d'),
             exact: true
           },
           {
-            path: '/qwen/docs/tags/language',
-            component: ComponentCreator('/qwen/docs/tags/language', '9d5'),
+            path: '/docs/tags/language',
+            component: ComponentCreator('/docs/tags/language', '21b'),
             exact: true
           },
           {
-            path: '/qwen/docs/tags/ros-2',
-            component: ComponentCreator('/qwen/docs/tags/ros-2', '855'),
+            path: '/docs/tags/ros-2',
+            component: ComponentCreator('/docs/tags/ros-2', '361'),
             exact: true
           },
           {
-            path: '/qwen/docs/tags/unity',
-            component: ComponentCreator('/qwen/docs/tags/unity', 'f17'),
+            path: '/docs/tags/unity',
+            component: ComponentCreator('/docs/tags/unity', 'd98'),
             exact: true
           },
           {
-            path: '/qwen/docs/tags/vision',
-            component: ComponentCreator('/qwen/docs/tags/vision', '4ae'),
+            path: '/docs/tags/vision',
+            component: ComponentCreator('/docs/tags/vision', '0f7'),
             exact: true
           },
           {
-            path: '/qwen/docs/tags/vla',
-            component: ComponentCreator('/qwen/docs/tags/vla', '6f7'),
+            path: '/docs/tags/vla',
+            component: ComponentCreator('/docs/tags/vla', '3dd'),
             exact: true
           },
           {
-            path: '/qwen/docs',
-            component: ComponentCreator('/qwen/docs', 'af9'),
+            path: '/docs',
+            component: ComponentCreator('/docs', '5cf'),
             routes: [
               {
-                path: '/qwen/docs/appendix',
-                component: ComponentCreator('/qwen/docs/appendix', '33d'),
+                path: '/docs/appendix',
+                component: ComponentCreator('/docs/appendix', '2b5'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
               {
-                path: '/qwen/docs/assessments-capstone',
-                component: ComponentCreator('/qwen/docs/assessments-capstone', 'c18'),
+                path: '/docs/assessments-capstone',
+                component: ComponentCreator('/docs/assessments-capstone', '42b'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
               {
-                path: '/qwen/docs/cloud-vs-onprem',
-                component: ComponentCreator('/qwen/docs/cloud-vs-onprem', '96d'),
+                path: '/docs/cloud-vs-onprem',
+                component: ComponentCreator('/docs/cloud-vs-onprem', '475'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
               {
-                path: '/qwen/docs/deployment-integrations',
-                component: ComponentCreator('/qwen/docs/deployment-integrations', '860'),
+                path: '/docs/deployment-integrations',
+                component: ComponentCreator('/docs/deployment-integrations', '4b3'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
               {
-                path: '/qwen/docs/hardware-requirements',
-                component: ComponentCreator('/qwen/docs/hardware-requirements', '009'),
+                path: '/docs/hardware-requirements',
+                component: ComponentCreator('/docs/hardware-requirements', '663'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
               {
-                path: '/qwen/docs/intro',
-                component: ComponentCreator('/qwen/docs/intro', '75e'),
+                path: '/docs/intro',
+                component: ComponentCreator('/docs/intro', '61d'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
               {
-                path: '/qwen/docs/module1-ros2',
-                component: ComponentCreator('/qwen/docs/module1-ros2', 'b20'),
+                path: '/docs/module1-ros2',
+                component: ComponentCreator('/docs/module1-ros2', '5ef'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
               {
-                path: '/qwen/docs/module2-digital-twin',
-                component: ComponentCreator('/qwen/docs/module2-digital-twin', '58c'),
+                path: '/docs/module2-digital-twin',
+                component: ComponentCreator('/docs/module2-digital-twin', 'e77'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
               {
-                path: '/qwen/docs/module3-isaac',
-                component: ComponentCreator('/qwen/docs/module3-isaac', 'c41'),
+                path: '/docs/module3-isaac',
+                component: ComponentCreator('/docs/module3-isaac', 'e20'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
               {
-                path: '/qwen/docs/module4-vla',
-                component: ComponentCreator('/qwen/docs/module4-vla', '4b2'),
+                path: '/docs/module4-vla',
+                component: ComponentCreator('/docs/module4-vla', '01b'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
               {
-                path: '/qwen/docs/robot-lab-options',
-                component: ComponentCreator('/qwen/docs/robot-lab-options', 'dd0'),
+                path: '/docs/robot-lab-options',
+                component: ComponentCreator('/docs/robot-lab-options', '415'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },
               {
-                path: '/qwen/docs/weekly-breakdown',
-                component: ComponentCreator('/qwen/docs/weekly-breakdown', '236'),
+                path: '/docs/weekly-breakdown',
+                component: ComponentCreator('/docs/weekly-breakdown', '776'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               }
@@ -183,8 +148,8 @@ export default [
     ]
   },
   {
-    path: '/qwen/',
-    component: ComponentCreator('/qwen/', '47c'),
+    path: '/',
+    component: ComponentCreator('/', '2bc'),
     exact: true
   },
   {
