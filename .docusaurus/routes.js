@@ -3,41 +3,6 @@ import ComponentCreator from '@docusaurus/ComponentCreator';
 
 export default [
   {
-    path: '/qwen/__docusaurus/debug',
-    component: ComponentCreator('/qwen/__docusaurus/debug', 'cfe'),
-    exact: true
-  },
-  {
-    path: '/qwen/__docusaurus/debug/config',
-    component: ComponentCreator('/qwen/__docusaurus/debug/config', '055'),
-    exact: true
-  },
-  {
-    path: '/qwen/__docusaurus/debug/content',
-    component: ComponentCreator('/qwen/__docusaurus/debug/content', '212'),
-    exact: true
-  },
-  {
-    path: '/qwen/__docusaurus/debug/globalData',
-    component: ComponentCreator('/qwen/__docusaurus/debug/globalData', '5ae'),
-    exact: true
-  },
-  {
-    path: '/qwen/__docusaurus/debug/metadata',
-    component: ComponentCreator('/qwen/__docusaurus/debug/metadata', 'fe2'),
-    exact: true
-  },
-  {
-    path: '/qwen/__docusaurus/debug/registry',
-    component: ComponentCreator('/qwen/__docusaurus/debug/registry', '3af'),
-    exact: true
-  },
-  {
-    path: '/qwen/__docusaurus/debug/routes',
-    component: ComponentCreator('/qwen/__docusaurus/debug/routes', 'db5'),
-    exact: true
-  },
-  {
     path: '/qwen/login',
     component: ComponentCreator('/qwen/login', 'fbd'),
     exact: true

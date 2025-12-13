@@ -7,11 +7,28 @@ export default {
   "title": "Physical AI & Humanoid Robotics Course",
   "tagline": "A comprehensive textbook on Physical AI and Humanoid Robotics",
   "favicon": "img/favicon.ico",
-  "url": "https://YOUR_GITHUB_USERNAME.github.io",
+  "url": "https://warsaiqbal.github.io",
   "baseUrl": "/qwen/",
-  "organizationName": "YOUR_GITHUB_USERNAME",
+  "organizationName": "warsaiqbal",
   "projectName": "qwen",
   "onBrokenLinks": "throw",
+  "markdown": {
+    "format": "detect",
+    "mermaid": false,
+    "emoji": true,
+    "mdx1Compat": {
+      "comments": true,
+      "admonitions": true,
+      "headingIds": true
+    },
+    "anchors": {
+      "maintainCase": false
+    },
+    "hooks": {
+      "onBrokenMarkdownLinks": "warn",
+      "onBrokenMarkdownImages": "throw"
+    }
+  },
   "i18n": {
     "defaultLocale": "en",
     "locales": [
@@ -387,22 +404,5 @@ export default {
   "stylesheets": [],
   "clientModules": [],
   "titleDelimiter": "|",
-  "noIndex": false,
-  "markdown": {
-    "format": "mdx",
-    "mermaid": false,
-    "emoji": true,
-    "mdx1Compat": {
-      "comments": true,
-      "admonitions": true,
-      "headingIds": true
-    },
-    "anchors": {
-      "maintainCase": false
-    },
-    "hooks": {
-      "onBrokenMarkdownLinks": "warn",
-      "onBrokenMarkdownImages": "throw"
-    }
-  }
+  "noIndex": false
 };

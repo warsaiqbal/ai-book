@@ -14,7 +14,7 @@
       "calendar": "gregory",
       "path": "en",
       "translate": false,
-      "url": "https://YOUR_GITHUB_USERNAME.github.io",
+      "url": "https://warsaiqbal.github.io",
       "baseUrl": "/qwen/"
     },
     "ur": {
@@ -24,7 +24,7 @@
       "calendar": "gregory",
       "path": "ur",
       "translate": true,
-      "url": "https://YOUR_GITHUB_USERNAME.github.io",
+      "url": "https://warsaiqbal.github.io",
       "baseUrl": "/qwen/ur/"
     }
   }
