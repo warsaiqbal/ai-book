@@ -11,10 +11,10 @@ const config = {
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
-  url: 'https://warsaiqbal.github.io',
+  url: 'http://localhost:3000',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/ai-book/',
+  baseUrl: '/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
@@ -83,7 +83,7 @@ const config = {
             label: 'Textbook',
           },
           {
-            href: 'https://github.com/facebook/docusaurus',
+            href: 'https://github.com/warsaiqbal/physical-ai-humanoid-robotics-textbook',
             label: 'GitHub',
             position: 'right',
           },
@@ -123,7 +123,7 @@ const config = {
             items: [
               {
                 label: 'GitHub',
-                href: 'https://github.com/facebook/docusaurus',
+                href: 'https://github.com/warsaiqbal/physical-ai-humanoid-robotics-textbook',
               },
             ],
           },

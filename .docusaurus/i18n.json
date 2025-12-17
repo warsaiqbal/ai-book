@@ -14,7 +14,7 @@
       "calendar": "gregory",
       "path": "en",
       "translate": false,
-      "url": "https://warsaiqbal.github.io",
+      "url": "http://localhost:3000",
       "baseUrl": "/"
     },
     "ur": {
@@ -24,7 +24,7 @@
       "calendar": "gregory",
       "path": "ur",
       "translate": true,
-      "url": "https://warsaiqbal.github.io",
+      "url": "http://localhost:3000",
       "baseUrl": "/ur/"
     }
   }

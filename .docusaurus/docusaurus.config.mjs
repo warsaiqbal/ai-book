@@ -7,10 +7,10 @@ export default {
   "title": "Physical AI & Humanoid Robotics Course",
   "tagline": "A comprehensive textbook on Physical AI and Humanoid Robotics",
   "favicon": "img/favicon.ico",
-  "url": "https://warsaiqbal.github.io",
+  "url": "http://localhost:3000",
   "baseUrl": "/",
   "organizationName": "warsaiqbal",
-  "projectName": "qwen",
+  "projectName": "physical-ai-humanoid-robotics-textbook",
   "onBrokenLinks": "throw",
   "markdown": {
     "format": "detect",
@@ -95,7 +95,7 @@ export default {
           "label": "Textbook"
         },
         {
-          "href": "https://github.com/facebook/docusaurus",
+          "href": "https://github.com/warsaiqbal/physical-ai-humanoid-robotics-textbook",
           "label": "GitHub",
           "position": "right"
         }
@@ -136,7 +136,7 @@ export default {
           "items": [
             {
               "label": "GitHub",
-              "href": "https://github.com/facebook/docusaurus"
+              "href": "https://github.com/warsaiqbal/physical-ai-humanoid-robotics-textbook"
             }
           ]
         }
